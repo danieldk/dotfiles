@@ -69,3 +69,6 @@ colorscheme molokai
 au Bufenter *.hs compiler ghc
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
+
+" git
+nnoremap <leader>gs :Gstatus<cr>
