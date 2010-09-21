@@ -64,3 +64,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 colorscheme molokai
+
+" Haskell
+au Bufenter *.hs compiler ghc
+let g:haddock_browser = "open"
+let g:haddock_browser_callformat = "%s %s"
