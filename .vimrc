@@ -72,3 +72,6 @@ let g:haddock_browser_callformat = "%s %s"
 
 " git
 nnoremap <leader>gs :Gstatus<cr>
+
+" tag list
+nnoremap <leader>t :TlistToggle<cr><C-w>h
