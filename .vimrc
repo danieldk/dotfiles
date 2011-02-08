@@ -3,6 +3,8 @@ filetype plugin indent on
 
 set nocompatible
 
+syntax on
+
 set modelines=0
 
 set tabstop=2
