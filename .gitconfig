@@ -1,4 +1,14 @@
 [user]
-	name = Daniel de Kok
+	name = Daniël de Kok
 	email = me@danieldk.eu
+[core]
+  editor = mvim -f
 [gui]
+[color]
+	ui = auto
+[advice]
+	statusHints = false
+[diff]
+	renames = copies
+[merge]
+	stat = true
