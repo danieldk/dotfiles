@@ -313,7 +313,11 @@ command! DocIndex call DocIndex()
 function! DocIndex()
   let files   = split(globpath(s:libraries,'doc-index*.html'),'\n')
   let g:haddock_index = {}
-  call ProcessHaddockIndexes2(s:libraries,files)
+  if haskellmode#GHC_VersionGE([7,0,0])
+    call ProcessHaddockIndexes3(s:libraries,files)
+  else
+    call ProcessHaddockIndexes2(s:libraries,files)
+  endif
   if haskellmode#GHC_VersionGE([6,8,2])
     if &shell =~ 'sh' " unix-type shell
       let s:addon_libraries = split(system(g:ghc_pkg . ' field \* haddock-html'),'\n')
@@ -326,7 +330,11 @@ function! DocIndex()
         let [_,quote,file,addon_path;x] = ml
         let addon_path = substitute(addon_path,'\(\\\\\|\\\)','/','g')
         let addon_files = split(globpath(addon_path,'doc-index*.html'),'\n')
-        call ProcessHaddockIndexes2(addon_path,addon_files)
+        if haskellmode#GHC_VersionGE([7,0,0])
+          call ProcessHaddockIndexes3(addon_path,addon_files)
+        else
+          call ProcessHaddockIndexes2(addon_path,addon_files)
+        endif
       endif
     endfor
   endif
@@ -420,6 +428,63 @@ function! ProcessHaddockIndexes2(location,files)
     endif
   endfor
 endfunction
+
+function! ProcessHaddockIndexes3(location,files)
+  let entryPat= '>\(.*\)$'
+  let linkPat = '<a href="\([^"]*\)"'
+  let kindPat = '#\(.\)'
+
+  " redraw
+  echo 'populating g:haddock_index from haddock index files in ' a:location
+  for f in a:files  
+    echo f[len(a:location):]
+    let isLink  = ''
+    let link    = {}
+    let entry   = ''
+    let lines   = split(join(readfile(f,'b')),'\ze<')
+    for line in lines
+      if (line=~'class="src') || (line=~'/table')
+        if (link!={}) && (entry!='')
+          if has_key(g:haddock_index,DeHTML(entry))
+            let dict = extend(g:haddock_index[DeHTML(entry)],deepcopy(link))
+          else
+            let dict = deepcopy(link)
+          endif
+          let g:haddock_index[DeHTML(entry)] = dict
+          let link  = {}
+          let entry = ''
+        endif
+        let ml = matchlist(line,entryPat)
+        if ml!=[] | let [_,entry;x] = ml | continue | endif
+        continue 
+      endif
+      if entry!=''
+        let ml = matchlist(line,linkPat)
+        if ml!=[] 
+          let [_,isLink;x]=ml
+          let ml = matchlist(line,entryPat)
+          if ml!=[] 
+            let [_,module;x] = ml 
+            let [_,kind;x]   = matchlist(isLink,kindPat)
+            let last         = a:location[strlen(a:location)-1]
+            let link[module."[".kind."]"] = a:location . (last=='/'?'':'/') . isLink
+            let isLink='' 
+          endif
+          continue
+        endif
+      endif
+    endfor
+    if link!={} 
+      if has_key(g:haddock_index,DeHTML(entry))
+        let dict = extend(g:haddock_index[DeHTML(entry)],deepcopy(link))
+      else
+        let dict = deepcopy(link)
+      endif
+      let g:haddock_index[DeHTML(entry)] = dict
+    endif
+  endfor
+endfunction
+
 
 command! ExportDocIndex call ExportDocIndex()
 function! ExportDocIndex()
