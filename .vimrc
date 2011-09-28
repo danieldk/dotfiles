@@ -56,10 +56,13 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 nnoremap <leader>q gqip
 
-nnoremap <leader>v V`]
+" Vertical split
+nnoremap <leader>v <C-w>v<C-w>l
 
+" Horizontal split
 nnoremap <leader>w <C-w><C-s><C-w>j
 
+" Simpler window navigation
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
