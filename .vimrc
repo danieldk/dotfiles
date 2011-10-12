@@ -1,3 +1,6 @@
+" Load bundles via Pathogen
+call pathogen#infect()
+
 filetype off
 filetype plugin indent on
 
