@@ -89,3 +89,20 @@ nnoremap <leader>gu :Git pull<cr>
 " tag list
 nnoremap <leader>c :TlistToggle<cr><C-w>h
 
+
+" notmuch
+
+let g:notmuch_folders = [
+        \ [ 'new',      'tag:inbox and tag:unread' ],
+        \ [ 'todo'    , 'tag:todo' ],
+        \ [ 'all-mail', 'not tag:spam'             ],
+        \ [ 'haskell-beginners', 'tag:haskell-beginners'   ],
+        \ [ 'haskell-cafe', 'tag:haskell-cafe'   ],
+        \ [ 'qt-interest', 'tag:qt-interest'     ],
+        \ [ 'spam',  'tag:spam'                ],
+        \ ]
+
+let g:notmuch_sendmail = '/usr/local/bin/msmtp'
+let g:notmuch_compose_insert_mode_start = 0
+let g:notmuch_compose_signature_defaults = []
+
