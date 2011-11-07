@@ -951,7 +951,8 @@ function! s:NM_cmd_compose(words, body_lines)
 
         if !has_key(hdrs, 'From') || !len(hdrs['From'])
                 let me = <SID>NM_compose_get_user_email()
-                let hdrs['From'] = [ me ]
+                let name = <SID>NM_compose_get_user_name()
+                let hdrs['From'] = [ name . ' <' . me . '>' ]
         endif
 
         for key in g:notmuch_compose_headers
@@ -1084,6 +1085,12 @@ function! s:NM_compose_get_user_email()
         " TODO: do this properly (still), i.e., allow for multiple email accounts
         let email = substitute(system('notmuch config get user.primary_email'), '\v(^\s*|\s*$|\n)', '', 'g')
 	return email
+endfunction
+
+function! s:NM_compose_get_user_name()
+        " TODO: do this properly (still), i.e., allow for multiple email accounts
+        let name = substitute(system('notmuch config get user.name'), '\v(^\s*|\s*$|\n)', '', 'g')
+	return name
 endfunction
 
 function! s:NM_compose_find_line_match(start, pattern, failure)
