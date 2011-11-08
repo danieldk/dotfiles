@@ -15,6 +15,7 @@ type = IMAP
 remotehost = imap.gmail.com
 remoteuser = me@example.org
 remotepass = mypassword
+realdelete = no
 ssl = yes
 maxconnections = 4
 realdelete = no
