@@ -1,0 +1,74 @@
+# Maildir
+set mbox_type = Maildir
+set folder="~/mail"
+set spoolfile = "+inbox"
+set mbox = "+archive"
+set postponed = "+drafts"
+
+# Mailboxes
+mailboxes +inbox +todo +archive +sent +drafts +haskell-beginners +haskell-cafe +spam +thrash
+
+# Sending via GMail SMTP will automatically put a mail in sent items
+unset record
+
+# Sending mail
+set sendmail = /usr/bin/msmtp
+
+# Editor
+
+set editor="vim"
+
+# General options
+set realname = "Daniël de Kok"
+set from = "me@danieldk.eu"
+set envelope_from
+set mail_check = 0
+unset move
+set delete
+unset confirmappend
+set quit
+unset mark_old
+
+set sort = threads
+set sort_aux = reverse-last-date-received
+set sort_re
+
+set smart_wrap
+set tilde
+unset markers
+
+set fcc_attach
+unset mime_forward
+set include
+set forward_quote
+
+# Mail search via notmuch
+macro index <F8> \
+  "<enter-command>unset wait_key<enter><shell-escape>~/aps/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+  "search mail (using notmuch)"
+macro index <F9> \
+  "<enter-command>unset wait_key<enter><pipe-message>~/aps/bin/mutt-notmuch thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
+  "search and reconstruct owning thread (using notmuch)"
+
+# Sidebar
+
+set sidebar_width=20
+set sidebar_visible=no
+set sidebar_delim='|'
+
+color sidebar_new yellow default
+
+bind index \CK sidebar-prev
+bind index \CJ sidebar-next
+bind index \CO sidebar-open
+bind pager \CK sidebar-prev
+bind pager \CJ sidebar-next
+bind pager \CO sidebar-open
+
+# b toggles sidebar visibility
+macro index b '<enter-command>toggle sidebar_visible<enter>'
+macro pager b '<enter-command>toggle sidebar_visible<enter>'
+
+# Remap bounce-message function to "B"
+bind index B bounce-message
+
