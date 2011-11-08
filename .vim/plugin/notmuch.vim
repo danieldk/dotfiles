@@ -729,7 +729,11 @@ function! s:NM_cmd_show_parse(inlines)
                 if strlen(in_part)
                         let part_end = 0
 
-                        if match(line, g:notmuch_show_part_end_regexp) != -1
+                        let part_end_pos = match(line, g:notmuch_show_part_end_regexp)
+                        if part_end_pos != -1
+                                if part_end_pos > 0
+                                  call add(info['disp'], line[0:part_end_pos - 1])
+                                endif
                                 let part_end = len(info['disp'])
                         else
                                 call add(info['disp'], line)
