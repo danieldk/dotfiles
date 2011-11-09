@@ -5,6 +5,7 @@ maxsyncaccounts = 3
 [Account Gmail]
 localrepository = Local
 remoterepository = Remote
+postsynchook = notmuch new
 
 [Repository Local]
 type = Maildir
