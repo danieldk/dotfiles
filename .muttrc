@@ -42,6 +42,11 @@ unset mime_forward
 set include
 set forward_quote
 
+# Aliases
+
+set alias_file=~/.mutt/aliases
+source ~/.mutt/aliases
+
 # Mail search via notmuch
 macro index <F8> \
   "<enter-command>unset wait_key<enter><shell-escape>~/aps/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
