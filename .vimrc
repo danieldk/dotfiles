@@ -47,7 +47,7 @@ vnoremap <tab> %
 set wrap
 set textwidth=76
 set formatoptions=qrn1
-set colorcolumn=82
+set colorcolumn=+1
 
 set list
 set listchars=tab:▸\ ,eol:¬
