@@ -1,0 +1,27 @@
+[general]
+accounts = Gmail
+maxsyncaccounts = 3
+
+[Account Gmail]
+localrepository = Local
+remoterepository = Remote
+postsynchook = notmuch new
+
+[Repository Local]
+type = Maildir
+localfolders = /home/daniel/mail
+
+[Repository Remote]
+type = IMAP
+remotehost = imap.gmail.com
+remoteuser = me@example.org
+remotepass = mypassword
+realdelete = no
+ssl = yes
+maxconnections = 4
+realdelete = no
+nametrans = lambda foldername: re.sub ('^\[gmail\].', '',
+                               re.sub ('sent_mail', 'sent',
+                               re.sub ('all_mail', 'archive',
+                               re.sub ('starred', 'flagged',
+                               re.sub (' ', '_', foldername.lower())))))
