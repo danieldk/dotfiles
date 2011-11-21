@@ -96,6 +96,7 @@ augroup ft_tex
 
   au BufNewFile,BufRead *.tex set filetype=tex
   au Syntax tex setlocal spell
+  au Syntax tex setlocal formatoptions=tqrn1
 augroup END
 
 " }}}
