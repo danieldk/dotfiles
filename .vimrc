@@ -89,3 +89,13 @@ nnoremap <leader>gu :Git pull<cr>
 " tag list
 nnoremap <leader>c :TlistToggle<cr><C-w>h
 
+" TeX {{{
+
+augroup ft_tex
+  au!
+
+  au BufNewFile,BufRead *.tex set filetype=tex
+  au Syntax tex setlocal spell
+augroup END
+
+" }}}
