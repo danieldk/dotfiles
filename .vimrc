@@ -47,7 +47,7 @@ vnoremap <tab> %
 set wrap
 set textwidth=76
 set formatoptions=qrn1
-set colorcolumn=82
+set colorcolumn=+1
 
 set list
 set listchars=tab:▸\ ,eol:¬
@@ -89,20 +89,14 @@ nnoremap <leader>gu :Git pull<cr>
 " tag list
 nnoremap <leader>c :TlistToggle<cr><C-w>h
 
+" TeX {{{
 
-" notmuch
+augroup ft_tex
+  au!
 
-let g:notmuch_folders = [
-        \ [ 'new',      'tag:inbox and tag:unread' ],
-        \ [ 'todo'    , 'tag:todo' ],
-        \ [ 'all-mail', 'not tag:spam'             ],
-        \ [ 'haskell-beginners', 'tag:haskell-beginners'   ],
-        \ [ 'haskell-cafe', 'tag:haskell-cafe'   ],
-        \ [ 'qt-interest', 'tag:qt-interest'     ],
-        \ [ 'spam',  'tag:spam'                ],
-        \ ]
+  au BufNewFile,BufRead *.tex set filetype=tex
+  au Syntax tex setlocal spell
+  au Syntax tex setlocal formatoptions=tqrn1
+augroup END
 
-let g:notmuch_sendmail = '/usr/local/bin/msmtp'
-let g:notmuch_compose_insert_mode_start = 0
-let g:notmuch_compose_signature_defaults = []
-
+" }}}
