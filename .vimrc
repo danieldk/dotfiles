@@ -81,6 +81,7 @@ let g:haddock_browser_callformat = "%s %s"
 " git
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gc :Gcommit<cr>
+nnoremap <leader>gl :Glog<cr>
 nnoremap <leader>go :Git stash pop<cr>
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gt :Git stash<cr>
