@@ -90,6 +90,10 @@ nnoremap <leader>gu :Git pull<cr>
 " tag list
 nnoremap <leader>c :TlistToggle<cr><C-w>h
 
+" quickfix list
+nnoremap <leader>q :cwindow<cr>
+
+
 " TeX {{{
 
 augroup ft_tex
