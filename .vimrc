@@ -91,7 +91,7 @@ nnoremap <leader>gu :Git pull<cr>
 nnoremap <leader>c :TlistToggle<cr><C-w>h
 
 " quickfix list
-nnoremap <leader>q :cwindow<cr>
+nnoremap <leader>f :cwindow<cr>
 
 
 " TeX {{{
