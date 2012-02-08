@@ -1,0 +1,6 @@
+Git prompt functionality was retrieved from:
+
+https://github.com/olivierverdier/zsh-git-prompt
+
+Since this script requires modification, it could not be added as
+a git submodule.

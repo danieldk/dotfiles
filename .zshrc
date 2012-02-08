@@ -17,7 +17,4 @@ export PS1='%n@%m %F{green}%~%f $(git_super_status) %# '
 exec 2>>(while read line; do
   print '\e[91m'${(q)line}'\e[0m' > /dev/tty; print -n $'\0'; done &)
 
-setopt extended_glob
-for zshrc_snippet in ~/.zsh.d/S[0-9][0-9]*[^~] ; do
-  source $zshrc_snippet
-done
+source ~/.zsh/git-prompt/zshrc.sh
