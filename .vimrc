@@ -105,3 +105,10 @@ augroup ft_tex
 augroup END
 
 " }}}
+"
+
+" Kill arrow keys
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
