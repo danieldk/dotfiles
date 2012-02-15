@@ -23,6 +23,10 @@ fi
 if [[ $(hostname) = *.rug.nl ]] ; then
   alias volker="ssh -Y volker.let.rug.nl"
   alias vingolf="ssh -Y vingolf.let.rug.nl"
+else
+  alias bastion="ssh -Y bastion"
+  alias volker="ssh -Y volker"
+  alias vingolf="ssh -Y vingolf"
 fi
 
 export PS1='%n@%m %F{green}%~%f $(git_super_status) %# '
