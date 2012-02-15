@@ -4,6 +4,9 @@ export SAVEHIST=10000
 export HISTFILE=~/.zhistory
 setopt inc_append_history
 
+# vi-style input
+bindkey -v
+
 # Completion
 autoload -U compinit
 compinit
