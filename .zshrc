@@ -8,6 +8,11 @@ setopt inc_append_history
 autoload -U compinit
 compinit
 
+# Locale
+if [ $(uname -s) = "Linux" ] ; then
+  export LC_ALL="en_US.UTF-8"
+fi
+
 # Prompt
 #autoload -U promptinit
 #promptinit
