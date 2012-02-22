@@ -14,6 +14,8 @@ compinit
 # Locale
 if [ $(uname -s) = "Linux" ] ; then
   export LC_ALL="en_US.UTF-8"
+elif [ $(uname -s) = "Darwin" ] ; then
+  export PATH="$PATH:/usr/local/bin:/usr/texbin"
 fi
 
 # Prompt
