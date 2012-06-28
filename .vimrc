@@ -4,6 +4,10 @@ call pathogen#infect()
 filetype off
 filetype plugin indent on
 
+" Do not put backups and swap files in the currenty directory.
+set backupdir=~/.backup,.,/tmp
+set directory=~/.backup,.,/tmp
+
 set nocompatible
 
 syntax on
