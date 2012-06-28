@@ -98,7 +98,8 @@ nnoremap <leader>c :TlistToggle<cr><C-w>h
 nnoremap <leader>f :cwindow<cr>
 
 " ctrl-p
-nnoremap <leader>t :CtrlP<cr>
+nnoremap <leader>p :CtrlP<cr>
+nnoremap <leader>t :CtrlPTag<cr>
 
 " TeX {{{
 
