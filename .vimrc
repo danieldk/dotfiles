@@ -93,6 +93,8 @@ nnoremap <leader>c :TlistToggle<cr><C-w>h
 " quickfix list
 nnoremap <leader>f :cwindow<cr>
 
+" ctrl-p
+nnoremap <leader>t :CtrlP<cr>
 
 " TeX {{{
 
