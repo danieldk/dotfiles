@@ -11,6 +11,8 @@ compinit
 # vi-style input
 bindkey -v
 
+bindkey '^R' history-incremental-pattern-search-backward
+
 # Locale
 if [ $(uname -s) = "Linux" ] ; then
   export LC_ALL="en_US.UTF-8"
