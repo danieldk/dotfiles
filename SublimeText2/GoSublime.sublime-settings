@@ -1,0 +1,148 @@
+{
+	// you may set specific environment variables here
+	// e.g "env": { "PATH": "$HOME/go/bin:$PATH" }
+	// in values, $PATH and ${PATH} are replaced with
+	// the corresponding environment(PATH) variable, if it exists.
+	"env": {"PATH": "$PATH:/usr/local/bin:$HOME/go/bin", "GOPATH": "$HOME/go"},
+
+	// Your shell. e.g. on Linux and OS X, if your shell bash:
+	// you may set it to ["/bin/bash", "--login", "-c", "$CMD"]
+	// it's useful to pass the --login argument in order for it run your ~/.bashrc etc.
+	// otherwise environment variables may not be seen by Sublime Text and therefore GoSublime
+	//
+	// If set, commands are passed to it instead of the Python default which for *nix is usually
+	// /bin/sh which in most cases is not what you want
+	//
+	// the special entry "$CMD" is replaced by the actual command
+	"shell": [],
+
+	// Whether or not gscomplete(gocode) is enabled
+	"gscomplete_enabled": true,
+
+	// the command that shall be called for gocode, this can be the command name
+	// or absolute path to a binary e.g. `/go/bin/gocode`
+	"gocode_cmd": "gocode",
+
+	// Whether or not gsfmt is enabled
+	"fmt_enabled": true,
+
+	// whether or not to indent with tabs (alignment is always done using spaces)
+	"fmt_tab_indent": true,
+
+	// the assumed width of the tab character (or number of spaces to indent with)
+	"fmt_tab_width": 8,
+
+	// Whether or not gslint is enabled
+	"gslint_enabled": true,
+
+	// Whether or not comp lint is enabled (this might conflict with gslint)
+	"comp_lint_enabled": false,
+
+	// The list of commands that comp-lint will run (in the order specified)
+	// each entry contains a map of:
+	//    cmd: a list containing the command and its args
+	//    shell: whether or not use the $shell to run this command
+	//        if you don't need $shell features then don't set this.
+	//    global: whether or not commands like go install should affect the system globally
+	//        by default the environment variable GOBIN is set to ($TEMPDIR/GoSublime/bin
+	//        which in the installation of commands via comp-lint going there instead of into
+	//        one of your GOPATHs.
+	//        setting this to true, you can e.g automate the actual installation of your commands
+	// additionally, for `shell` and `global` if the value is not `true` then it's assumed to be false
+	"comp_lint_commands": [
+		{"cmd": ["go", "install"]}
+	],
+
+	// how long to wait after the last keystroke before the gslint_cmd command is run (in milliseconds)
+	"gslint_timeout": 100,
+
+	// whether or not to include snippets in the auto-completion list
+	"autocomplete_snippets": true,
+
+	// whether or not to include Test*, Benchmark* and Example* functions in the auto-completion list
+	"autocomplete_tests": false,
+
+	"margo_cmd": ["MarGo"],
+	// the tcp address on which MarGo listen/should listen
+	// if GoSublime can't connect to `margo_addr` it attempts to start MarGo
+	// with `margo_cmd` passing `margo_addr`
+	"margo_addr": "127.0.0.1:57951",
+
+	// commands to run on (post) save - list of objects of the form {"cmd": "...", "args": {...}}
+	// Any TextCommand may be run. Supported GS commands include:
+	//     gs_comp_lint - compile the pkg and report any errors
+	"on_save": [],
+
+	// as an alternative to Sublime Text's snippet system you may add snippets to GoSublime's
+	// code-completion by adding them to your user settings in the same format as bellow.
+	//
+	// "snippets": [
+	//     {
+	//         "match": {"global": true}, // these snippets will only be presented in the global scope
+	//         "snippets": [
+	//             {"text": "init", "title": "func init()", "value": "func init() {\n\t$1\n}"}
+	//         ]
+	//     },
+	//     {
+	//         "match": {"local": true}, // these snippets will only be present in a function scope
+	//         "snippets": [
+	//             {"text": "print", "title": "print(...)", "value": "print($1)"},
+	//             {"text": "println", "title": "println(...)", "value": "println($1)"}
+	//         ]
+	//     }
+	// ]
+	//
+	// you maybe add field markers ($1, $2, etc) to the `value` string to dictate where the cursor is place
+	// once a completion is expanded and where it's placed once you press tab afterwards.
+	// duplicate markers e.g f("...", $1, $1) will result in multiple cursors, one for each duplication.
+	"snippets": [],
+
+	"default_snippets": [
+		{
+			"match": {"global": true, "pkgname": ""},
+			"snippets": [
+				{"text": "package ${default_pkgname}", "title": "", "value": "package ${default_pkgname}\n\n$1\n"}
+			]
+		},
+		{
+			"match": {"global": true, "pkgname": "^main$"},
+			"snippets": [
+				{"text": "func main", "title": "func main {...}", "value": "func main() {\n\t$0\n}\n"}
+			]
+		},
+		{
+			"match": {"global": true, "pkgname": "."},
+			"snippets": [
+				{"text": "import", "title": "import (...)", "value": "import (\n\t\"$1\"\n)"},
+				{"text": "func", "title": "func {...}", "value": "func ${1:name}($2)$3 {\n\t$0\n}"},
+				{"text": "var", "title": "var (...)", "value": "var (\n\t$1\n)"},
+				{"text": "const", "title": "const (...)", "value": "const (\n\t$1\n)"},
+				{"text": "init", "title": "func init()", "value": "func init() {\n\t$1\n}"},
+				{
+					"text": "func http handler",
+					"title": "func(rw, req)",
+					"value": "func ${1:name}(rw http.ResponseWriter, req *http.Request) {\n\t$0\n}"
+				}
+			]
+		},
+		{
+			"match": {"global": true, "pkgname": ".", "has_types": true},
+			"snippets": [
+				{
+					"text": "func (*${typename})",
+					"title": "func (...) {...}",
+					"value": "func (${1:${typename_abbr}} ${2:*}${typename}) ${3:name}($4)$5 {\n\t$0\n}"
+				}
+			]
+		},
+		{
+			"match": {"local": true},
+			"snippets": [
+				{"text": "func", "title": "func{...}()", "value": "func($1) {\n\t$0\n}($2)"},
+				{"text": "var", "title": "var [name] [type]", "value": "var ${1:name} ${2:type}"}
+			]
+		}
+	],
+
+	"auto_complete_triggers": [ {"selector": "source.go", "characters": "."} ]
+}
