@@ -75,7 +75,21 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-colorscheme molokai
+set background=dark
+colorscheme solarized
+
+if exists('g:colors_name') && colors_name == 'solarized'
+  if has('gui_macvim')
+    set transparency=0
+  endif
+
+  if !has('gui_running') && $TERM_PROGRAM == 'Apple_Terminal'
+    let g:solarized_termcolors = &t_Co
+    colorscheme solarized
+  endif
+
+  call togglebg#map("<F2>")
+endif
 
 " Haskell
 au Bufenter *.hs compiler ghc
@@ -119,3 +133,6 @@ noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
+
+au FileType haskell nnoremap <Leader>ai
+  \ vip :sort r /\u.*/<CR> <Bar> :Tabularize /^import qualified\\|^import\\|^$<CR>

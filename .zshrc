@@ -36,3 +36,11 @@ fi
 export PS1='%n@%m %F{green}%~%f $(git_super_status) %# '
 
 source ~/.zsh/git-prompt/zshrc.sh
+
+export GOPATH=~/go
+
+export PATH=$PATH:~/go/bin
+
+export SP_CTYPE=utf8
+export SP_CSETLEN=212
+export ALPINO_HOME=~/sw/Alpino
