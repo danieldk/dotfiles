@@ -49,3 +49,6 @@ export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin
 
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+
+# Use JDK 7
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
