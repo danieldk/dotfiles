@@ -47,3 +47,5 @@ export ALPINO_HOME=~/sw/Alpino
 
 export GOROOT=$HOME/go
 export PATH=$PATH:$GOROOT/bin
+
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
