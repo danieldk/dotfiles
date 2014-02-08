@@ -44,3 +44,6 @@ export PATH=$PATH:~/go/bin
 export SP_CTYPE=utf8
 export SP_CSETLEN=212
 export ALPINO_HOME=~/sw/Alpino
+
+export GOROOT=$HOME/go
+export PATH=$PATH:$GOROOT/bin
