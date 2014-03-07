@@ -2,7 +2,13 @@
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.zhistory
+setopt HIST_SAVE_NO_DUPS
 setopt inc_append_history
+
+# Editor
+if [ $(uname) = "Darwin" ] ; then
+  export EDITOR="mvim -f"
+fi
 
 # Completion
 autoload -U compinit
