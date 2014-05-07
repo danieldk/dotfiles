@@ -1,82 +1,66 @@
-# Maildir
-set mbox_type = Maildir
+set tmpdir="/tmp"
+set mbox_type=Maildir
 set folder="~/mail"
-set spoolfile = "+inbox"
-set mbox = "+archive"
-set postponed = "+drafts"
+set mask="!^\\.[^.]"
 
-# Mailboxes
-mailboxes +inbox +todo +archive +sent +drafts +haskell-beginners +haskell-cafe +spam +thrash
+#set header_cache = "~/.mutt/hc/fastmail"
+#set message_cachedir = "~/.mutt/mc/fastmail"
 
-# Sending via GMail SMTP will automatically put a mail in sent items
 unset record
-
-# Sending mail
-set sendmail = /usr/bin/msmtp
-
-# Editor
-
-set editor="vim"
-
-# General options
-set realname = "Daniël de Kok"
-set from = "me@danieldk.eu"
-set envelope_from
-set mail_check = 0
-unset move
-set delete
-unset confirmappend
-set quit
-unset mark_old
-
-set sort = threads
-set sort_aux = reverse-last-date-received
-set sort_re
-
-set smart_wrap
-set tilde
 unset markers
+set nm_record = no
+set nm_hidden_tags = "unread,draft,flagged,passed,replied,attachment,inbox"
+unset postponed
 
-set fcc_attach
-unset mime_forward
-set include
-set forward_quote
+set nm_default_uri="notmuch:///Users/daniel/mail"
+set nm_query_type="threads" 
+set virtual_spoolfile=yes
+set nm_exclude_tags="spam"
 
-# Aliases
-
-set alias_file=~/.mutt/aliases
-source ~/.mutt/aliases
-
-# Mail search via notmuch
-macro index <F8> \
-  "<enter-command>unset wait_key<enter><shell-escape>~/aps/bin/mutt-notmuch --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
-  "search mail (using notmuch)"
-macro index <F9> \
-  "<enter-command>unset wait_key<enter><pipe-message>~/aps/bin/mutt-notmuch thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
-  "search and reconstruct owning thread (using notmuch)"
-
-# Sidebar
-
-set sidebar_width=20
-set sidebar_visible=no
-set sidebar_delim='|'
-
+set sidebar_width	= 35
+set sidebar_visible	= yes
 color sidebar_new yellow default
+color progress default magenta
+color sidebar green default
+bind index K sidebar-prev
+bind index J sidebar-next
+bind index <space> sidebar-open
+bind index <Esc>S sidebar-toggle
 
-bind index \CP sidebar-prev
-bind index \CN sidebar-next
-bind index \CO sidebar-open
-bind pager \CP sidebar-prev
-bind pager \CN sidebar-next
-bind pager \CO sidebar-open
+set sort_sidebar=unsorted
 
-# b toggles sidebar visibility
-macro index b '<enter-command>toggle sidebar_visible<enter>'
-macro pager b '<enter-command>toggle sidebar_visible<enter>'
+virtual-mailboxes \
+   "INBOX"                "notmuch://?query=tag:inbox" \
+   "clarind"              "notmuch://?query=tag:clarind" \
+   "clarind-devel"        "notmuch://?query=tag:clarind-devel" \
+   "clarind-fag7"         "notmuch://?query=tag:clarind-fag7" \
+   "debian-security"      "notmuch://?query=tag:debian-security" \
+   "sfs-all"              "notmuch://?query=tag:sfs-all"
 
-# Remap bounce-message function to "B"
-bind index B bounce-message
+tag-transforms "inbox"   "♠" \
+               "signed"  "⚑"
+tag-formats    "inbox"   "GI"
 
-# macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
-# macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+set index_format  = "%4C %Z %?GI?%GI& ? %<[1y?%<[1w?%<[1d?%[    %H:%M]&%[   %a %d]>&%[   %b %d]>&%[%y %b %d]>  %-16.15F %?M?(%3M)&     ? %s %* %?g?%g?"
+set pager_format  = "-%Z- %C/%m: %-20.20n   %s%*  -- %?g?%g? - (%P)"
+set date_format   = "!%a, %b %d, %Y at %I:%M:%S%p %Z"
+
+macro index \\\\ "<vfolder-from-query>"
+macro index y "<modify-labels-then-hide>-inbox\n<sync-mailbox>"
+bind index l modify-labels
+
+set realname            = "Daniël de Kok"
+set from                = "me@danieldk.eu"
+set use_from            = yes
+set envelope_from       = yes
+
+set sort = "threads"
+set sort_aux = "reverse-last-date-received"
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
+bind editor <Tab> complete-query
+bind editor ^T    complete
 
