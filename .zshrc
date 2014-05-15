@@ -58,3 +58,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
 # Use JDK 7
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+
+if which archey &> /dev/null ; then
+  archey -c
+fi
