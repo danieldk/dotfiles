@@ -42,6 +42,7 @@ fi
 export PS1='%n@%m %F{green}%~%f $(git_super_status) %# '
 
 source ~/.zsh/git-prompt/zshrc.sh
+source ~/.zsh/z/z.sh
 
 export GOPATH=~/go
 
