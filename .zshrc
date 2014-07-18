@@ -40,7 +40,8 @@ else
   alias vingolf="ssh -Y vingolf"
 fi
 
-export PS1='%n@%m %F{green}%~%f $(git_super_status) %# '
+export PS1='%F{green}%~%f %# '
+export RPS1='$(git_super_status)'
 
 source ~/.zsh/git-prompt/zshrc.sh
 source ~/.zsh/z/z.sh
