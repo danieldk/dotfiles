@@ -16,6 +16,7 @@ compinit
 
 # vi-style input
 bindkey -v
+export KEYTIMEOUT=1
 
 bindkey '^R' history-incremental-pattern-search-backward
 
