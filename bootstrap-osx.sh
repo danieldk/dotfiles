@@ -20,3 +20,6 @@ else
 fi
 
 ln -s ${PWD}/SublimeText2 "${SUBLIME_PKGDIR}/User"
+
+brew install archey
+brew install z
