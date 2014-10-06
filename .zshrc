@@ -60,4 +60,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 # Use JDK 7
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 
+# Commands compiled with Cabal
+if [ -d ~/.cabal/bin ]; then
+  export PATH=$PATH:~/.cabal/bin
+fi
+
 ~/.zsh/archey/archey -c
