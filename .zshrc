@@ -6,9 +6,7 @@ setopt HIST_SAVE_NO_DUPS
 setopt inc_append_history
 
 # Editor
-if [ $(uname) = "Darwin" ] ; then
-  export EDITOR="mvim -f"
-fi
+export EDITOR=vim
 
 # Completion
 autoload -U compinit

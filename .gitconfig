@@ -2,7 +2,7 @@
 	name = Daniël de Kok
 	email = me@danieldk.eu
 [core]
-  editor = mvim -f
+  editor = vim
 [gui]
 [color]
 	ui = auto
