@@ -48,6 +48,9 @@ nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
+" Escape is to far away...
+:imap jj <Esc>
+
 set wrap
 set textwidth=76
 set formatoptions=qrn1
