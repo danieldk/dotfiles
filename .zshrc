@@ -1,3 +1,5 @@
+fpath=(/usr/local/share/zsh/site-functions $fpath)
+
 # History options
 export HISTSIZE=10000
 export SAVEHIST=10000
@@ -66,3 +68,10 @@ if [ -d ~/.cabal/bin ]; then
 fi
 
 ~/.zsh/archey/archey -c
+
+# Task warrior
+zstyle ':completion:*:*:task:*' verbose yes
+zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:*:task:*' group-name ''
+alias t=task
+compdef _task t=task
