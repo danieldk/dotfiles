@@ -109,7 +109,7 @@ nnoremap <leader>gt :Git stash<cr>
 nnoremap <leader>gu :Git pull<cr>
 
 " tag list
-nnoremap <leader>c :TlistToggle<cr><C-w>h
+"nnoremap <leader>c :TlistToggle<cr><C-w>h
 
 " quickfix list
 nnoremap <leader>f :cwindow<cr>
@@ -129,7 +129,11 @@ augroup ft_tex
 augroup END
 
 " }}}
-"
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>e <Plug>(go-rename)
 
 " Kill arrow keys
 noremap <Up> <nop>
