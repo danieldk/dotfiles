@@ -25,6 +25,6 @@
 [submodule ".vim/bundle/vim-taskwarrior"]
 	path = .vim/bundle/vim-taskwarrior
 	url = https://github.com/farseer90718/vim-taskwarrior
-[submodule "/home/ddekok/.vim/bundle/vim-go"]
-	path = /home/ddekok/.vim/bundle/vim-go
+[submodule ".vim/bundle/vim-go"]
+	path = .vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
