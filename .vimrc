@@ -134,6 +134,9 @@ au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <leader>b <Plug>(go-build)
+
+let g:go_fmt_command = "goimports"
 
 " Kill arrow keys
 noremap <Up> <nop>
