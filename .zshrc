@@ -24,7 +24,9 @@ bindkey '^R' history-incremental-pattern-search-backward
 if [ $(uname -s) = "Linux" ] ; then
   export LC_ALL="en_US.UTF-8"
 elif [ $(uname -s) = "Darwin" ] ; then
-  export PATH="$PATH:/usr/local/bin:/usr/texbin"
+  if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+  fi
 fi
 
 # Prompt
