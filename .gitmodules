@@ -22,9 +22,6 @@
 [submodule ".vim/bundle/vim-markdown"]
 	path = .vim/bundle/vim-markdown
 	url = git://github.com/tpope/vim-markdown.git
-[submodule ".vim/bundle/vim-taskwarrior"]
-	path = .vim/bundle/vim-taskwarrior
-	url = https://github.com/farseer90718/vim-taskwarrior
 [submodule ".vim/bundle/vim-go"]
 	path = .vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go.git
