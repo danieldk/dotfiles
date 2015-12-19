@@ -48,6 +48,7 @@ export RPS1='$(git_super_status)'
 source ~/.zsh/git-prompt/zshrc.sh
 source ~/.zsh/z/z.sh
 
+#export GOROOT=/usr/local/go
 export GOPATH=~/go
 
 export PATH=$PATH:~/go/bin
@@ -56,8 +57,7 @@ export SP_CTYPE=utf8
 export SP_CSETLEN=212
 export ALPINO_HOME=~/sw/Alpino
 
-export GOROOT=$HOME/go
-export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
