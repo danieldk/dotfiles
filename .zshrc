@@ -77,3 +77,6 @@ zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:*:task:*' group-name ''
 alias t=task
 compdef _task t=task
+
+alias btskey='dd if=/dev/urandom bs=20 count=1 | /usr/bin/python -c "import sys;import base64; sys.stdout.write(base64.b32encode(sys.stdin.read()))" | sed "s/^/D/"'
+alias vpn='sudo openconnect --passwd-on-stdin -u nnsdd01 https://ras.uni-tuebingen.de'
