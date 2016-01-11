@@ -134,11 +134,15 @@ augroup END
 
 " }}}
 
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-au FileType go nmap <leader>b <Plug>(go-build)
+augroup FileType go
+  au!
+  au FileType go nmap <Leader>d <Plug>(go-def)
+  au FileType go nmap <Leader>s <Plug>(go-implements)
+  au FileType go nmap <Leader>i <Plug>(go-info)
+  au FileType go nmap <leader>c <Plug>(go-coverage)
+  au FileType go nmap <Leader>e <Plug>(go-rename)
+  au FileType go nmap <leader>b <Plug>(go-build)
+augroup END
 
 let g:go_fmt_command = "goimports"
 
