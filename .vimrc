@@ -111,12 +111,15 @@ nnoremap <leader>gu :Git pull<cr>
 " tag list
 "nnoremap <leader>c :TlistToggle<cr><C-w>h
 
+let g:tagbar_usearrows = 1
+nnoremap <leader>t :TagbarToggle<cr>
+
 " quickfix list
 nnoremap <leader>f :cwindow<cr>
 
 " ctrl-p
 nnoremap <leader>p :CtrlP<cr>
-nnoremap <leader>t :CtrlPTag<cr>
+"nnoremap <leader>t :CtrlPTag<cr>
 
 " TeX {{{
 
