@@ -112,6 +112,7 @@ nnoremap <leader>gu :Git pull<cr>
 "nnoremap <leader>c :TlistToggle<cr><C-w>h
 
 let g:tagbar_usearrows = 1
+let g:tagbar_autofocus = 1
 nnoremap <leader>t :TagbarToggle<cr>
 
 " quickfix list
