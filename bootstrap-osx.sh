@@ -2,6 +2,8 @@
 
 SUBLIME_PKGDIR=~/Library/Application\ Support/Sublime\ Text\ 2/Packages
 
+launchctl unload -w /System/Library/LaunchAgents/com.apple.gamed.plist
+
 # Expanded save dialog.
 defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
 
