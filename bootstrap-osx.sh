@@ -26,3 +26,4 @@ ln -s ${PWD}/SublimeText2 "${SUBLIME_PKGDIR}/User"
 brew install archey
 brew install z
 brew install tmux
+brew install reattach-to-user-namespace

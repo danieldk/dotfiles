@@ -59,26 +59,16 @@ export ALPINO_HOME=~/sw/Alpino
 
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
-if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
-
 # Use JDK 7
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+#export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 # Commands compiled with Cabal
 if [ -d ~/.cabal/bin ]; then
   export PATH=$PATH:~/.cabal/bin
 fi
 
-~/.zsh/archey/archey -c
+#~/.zsh/archey/archey -c
 
-# Task warrior
-zstyle ':completion:*:*:task:*' verbose yes
-zstyle ':completion:*:*:task:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:*:task:*' group-name ''
-alias t=task
-compdef _task t=task
-
-alias btskey='dd if=/dev/urandom bs=20 count=1 | /usr/bin/python -c "import sys;import base64; sys.stdout.write(base64.b32encode(sys.stdin.read()))" | sed "s/^/D/"'
 alias vpn='sudo openconnect -u nnsdd01 https://ras.uni-tuebingen.de'
 
-eval "$(rbenv init -)"
+source $HOME/.cargo/env 2> /dev/null

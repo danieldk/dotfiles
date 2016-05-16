@@ -31,3 +31,9 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = git://github.com/majutsushi/tagbar
+[submodule ".vim/bundle/vim-racer"]
+	path = .vim/bundle/vim-racer
+	url = https://github.com/racer-rust/vim-racer.git
+[submodule "neocomplete"]
+	path = neocomplete
+	url = https://github.com/Shougo/neocomplete.vim.git
