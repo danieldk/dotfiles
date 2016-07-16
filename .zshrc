@@ -38,15 +38,6 @@ fi
 #autoload -U promptinit
 #promptinit
 
-if [[ $(hostname) = *.rug.nl ]] ; then
-  alias volker="ssh -Y volker.let.rug.nl"
-  alias vingolf="ssh -Y vingolf.let.rug.nl"
-else
-  alias bastion="ssh -Y bastion"
-  alias volker="ssh -Y volker"
-  alias vingolf="ssh -Y vingolf"
-fi
-
 export PS1='%F{green}%~%f %# '
 export RPS1='$(git_super_status)'
 
