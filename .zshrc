@@ -29,6 +29,11 @@ elif [ $(uname -s) = "Darwin" ] ; then
   fi
 fi
 
+# Intel MKL
+if [ $(uname -s) = "Linux" -a -x ~/intel/bin/compilervars.sh ] ; then
+  source ~/intel/bin/compilervars.sh intel64
+fi
+
 # Prompt
 #autoload -U promptinit
 #promptinit
