@@ -66,6 +66,10 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
 nnoremap <leader>q gqip
 
+" Toggle paste
+set pastetoggle=<F2>
+nnoremap <silent> <leader>n :set paste!<CR>
+
 " Vertical split
 nnoremap <leader>v <C-w>v<C-w>l
 
