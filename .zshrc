@@ -68,3 +68,5 @@ fi
 alias vpn='sudo openconnect -u nnsdd01 https://ras.uni-tuebingen.de'
 
 source $HOME/.cargo/env 2> /dev/null
+
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
