@@ -68,5 +68,6 @@ fi
 alias vpn='sudo openconnect -u nnsdd01 https://ras.uni-tuebingen.de'
 
 source $HOME/.cargo/env 2> /dev/null
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
