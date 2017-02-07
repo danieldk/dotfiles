@@ -1,7 +1,20 @@
 " Load bundles via Pathogen
-call pathogen#infect()
+" call pathogen#infect()
 
 filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
+call vundle#end()
+
 filetype plugin indent on
 
 " Do not put backups and swap files in the currenty directory.
@@ -115,16 +128,16 @@ nnoremap <leader>gu :Git pull<cr>
 " tag list
 "nnoremap <leader>c :TlistToggle<cr><C-w>h
 
-let g:tagbar_usearrows = 1
-let g:tagbar_autofocus = 1
-nnoremap <leader>t :TagbarToggle<cr>
+"let g:tagbar_usearrows = 1
+"let g:tagbar_autofocus = 1
+"nnoremap <leader>t :TagbarToggle<cr>
 
 " quickfix list
 nnoremap <leader>f :cwindow<cr>
 
 " ctrl-p
 nnoremap <leader>p :CtrlP<cr>
-"nnoremap <leader>t :CtrlPTag<cr>
+nnoremap <leader>t :CtrlPTag<cr>
 
 " TeX {{{
 
