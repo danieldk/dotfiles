@@ -46,6 +46,8 @@ values."
      emacs-lisp
      git
      markdown
+     (mu4e :variables
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
      org
      (osx :variables
           osx-use-option-as-meta nil)
@@ -301,10 +303,36 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  (setq powerline-default-separator 'utf-8
+  (defvar my-mu4e-account-alist
+    '(("Work"
+       (user-mail-address "daniel.de-kok@uni-tuebingen.de"))
+      ("Home"
+       (user-mail-address "me@danieldk.eu"))))
+
+  (setq
+    )
+
+  (setq auth-sources
+        (quote
+         (macos-keychain-internet macos-keychain-generic "~/.netrc"))
+        powerline-default-separator 'utf-8
         org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
         org-ref-pdf-directory "~/Dropbox/Papers/"
-        org-ref-bibliography-notes "~/Dropbox/org/literature.org") 
+        org-ref-bibliography-notes "~/Dropbox/org/literature.org"
+
+        ;; Use msmtp for sending mail.
+        message-send-mail-function 'message-send-mail-with-sendmail
+        sendmail-program "/usr/local/bin/msmtp"
+        message-sendmail-f-is-evil 't
+
+        mu4e-drafts-folder  "/Drafts"
+        mu4e-trash-folder  "/Trash"
+        mu4e-sent-folder   "/Sent Items"
+        mu4e-sent-messages-behavior 'delete
+        mu4e-refile-folder "/Archive"
+        mu4e-get-mail-command "mbsync -a"
+        mu4e-change-filenames-when-moving t
+        user-mail-address "daniel.de-kok@uni-tuebingen.de")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -316,13 +344,38 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl ranger go-guru go-eldoc company-go go-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flycheck-rust seq flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete toml-mode racer cargo rust-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
+    (mu4e-maildirs-extension mu4e-alert ht org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl ranger go-guru go-eldoc company-go go-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flycheck-rust seq flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete toml-mode racer cargo rust-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(with-eval-after-load 'mu4e
+  (setq mu4e-context-policy 'pick-first
+        mu4e-contexts `( ,(make-mu4e-context
+                           :name "Home"
+                           :enter-func (lambda () (mu4e-message "Entering Home context"))
+                           :leave-func (lambda () (mu4e-message "Leaving Home context"))
+                           ;; we match based on the contact-fields of the message
+                           :match-func (lambda (msg)
+                                         (when msg 
+                                           (mu4e-message-contact-field-matches msg 
+                                                                               :to "me@danieldk.eu")))
+                           :vars '( ( user-mail-address      . "me@danieldk.eu"  )
+                                    ( user-full-name         . "Daniël de Kok" )
+                                    ( mu4e-compose-signature . nil)))
+                         ,(make-mu4e-context
+                           :name "Work"
+                           :enter-func (lambda () (mu4e-message "Switch to the Work context"))
+                           :match-func (lambda (msg)
+                                         (when msg 
+                                           (mu4e-message-contact-field-matches msg 
+                                                                               :to "daniel.de-kok@uni-tuebingen.de")))
+                           :vars '( ( user-mail-address       . "daniel.de-kok@uni-tuebingen.de" )
+                                    ( user-full-name          . "Daniël de Kok" )
+                                    ( mu4e-compose-signature  . nil))))))
 
 (with-eval-after-load 'org
   (setq org-agenda-files '("~/Dropbox/org/")
