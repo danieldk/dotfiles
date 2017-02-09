@@ -47,7 +47,9 @@ values."
      git
      markdown
      (mu4e :variables
-           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e"
+           :packages
+           (not mu4e-maildirs-extension))
      org
      (osx :variables
           osx-use-option-as-meta nil)
@@ -146,7 +148,7 @@ values."
                                :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -303,19 +305,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  (defvar my-mu4e-account-alist
-    '(("Work"
-       (user-mail-address "daniel.de-kok@uni-tuebingen.de"))
-      ("Home"
-       (user-mail-address "me@danieldk.eu"))))
+  (setq powerline-default-separator 'utf-8
 
-  (setq
-    )
-
-  (setq auth-sources
-        (quote
-         (macos-keychain-internet macos-keychain-generic "~/.netrc"))
-        powerline-default-separator 'utf-8
         org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
         org-ref-pdf-directory "~/Dropbox/Papers/"
         org-ref-bibliography-notes "~/Dropbox/org/literature.org"
@@ -324,15 +315,84 @@ before packages are loaded. If you are unsure, you should try in setting them in
         message-send-mail-function 'message-send-mail-with-sendmail
         sendmail-program "/usr/local/bin/msmtp"
         message-sendmail-f-is-evil 't
-
-        mu4e-drafts-folder  "/Drafts"
-        mu4e-trash-folder  "/Trash"
-        mu4e-sent-folder   "/Sent Items"
-        mu4e-sent-messages-behavior 'delete
-        mu4e-refile-folder "/Archive"
-        mu4e-get-mail-command "mbsync -a"
-        mu4e-change-filenames-when-moving t
         user-mail-address "daniel.de-kok@uni-tuebingen.de")
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((gnuplot . t)))
+
+  (with-eval-after-load 'mu4e
+    (setq mu4e-drafts-folder  "/Drafts"
+          mu4e-trash-folder  "/Trash"
+          mu4e-sent-folder   "/Sent Items"
+          mu4e-sent-messages-behavior 'delete
+          mu4e-refile-folder "/Archive"
+          mu4e-get-mail-command "mbsync -a"
+          mu4e-update-interval 900
+          mu4e-change-filenames-when-moving t
+          mu4e-context-policy 'pick-first
+          mu4e-view-show-addresses t
+          mu4e-contexts `( ,(make-mu4e-context
+                             :name "Home"
+                             :enter-func (lambda () (mu4e-message "Entering Home context"))
+                             :leave-func (lambda () (mu4e-message "Leaving Home context"))
+                             ;; we match based on the contact-fields of the message
+                             :match-func (lambda (msg)
+                                           (when msg
+                                             (mu4e-message-contact-field-matches msg
+                                                                                 :to "me@danieldk.eu")))
+                             :vars '( ( user-mail-address      . "me@danieldk.eu"  )
+                                      ( user-full-name         . "Daniël de Kok" )
+                                      ( mu4e-compose-signature . nil)))
+                           ,(make-mu4e-context
+                             :name "Work"
+                             :enter-func (lambda () (mu4e-message "Switch to the Work context"))
+                             :match-func (lambda (msg)
+                                           (when msg
+                                             (mu4e-message-contact-field-matches msg
+                                                                                 :to "daniel.de-kok@uni-tuebingen.de")))
+                             :vars '( ( user-mail-address       . "daniel.de-kok@uni-tuebingen.de" )
+                                      ( user-full-name          . "Daniël de Kok" )
+                                      ( mu4e-compose-signature  . nil))))))
+
+  (with-eval-after-load 'org
+    (setq org-agenda-files '("/Users/daniel/Dropbox/org/")
+          org-default-notes-file (concat org-directory "/notes.org")
+          org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+            ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+             "* %?\nEntered on %U\n  %i\n  %a"))))
+
+
+  (add-hook 'org-mode-hook (lambda ()
+                             (evilified-state-evilify pdf-view-mode pdf-view-mode-map
+                               ;; Navigation
+                               "0"  'image-bol
+                               "$"  'image-eol
+                               "j"  'pdf-view-next-line-or-next-page
+                               "k"  'pdf-view-previous-line-or-previous-page
+                               "l"  'image-forward-hscroll
+                               "h"  'image-backward-hscroll
+                               "J"  'pdf-view-next-page
+                               "K"  'pdf-view-previous-page
+                               "gg"  'pdf-view-first-page
+                               "G"  'pdf-view-last-page
+                               "gt"  'pdf-view-goto-page
+                               "gl"  'pdf-view-goto-label
+                               "u" 'pdf-view-scroll-down-or-previous-page
+                               "d" 'pdf-view-scroll-up-or-next-page
+                               (kbd "C-u") 'pdf-view-scroll-down-or-previous-page
+                               (kbd "C-d") 'pdf-view-scroll-up-or-next-page
+                               (kbd "``")  'pdf-history-backward
+                               ;; Search
+                               "/" 'isearch-forward
+                               "?" 'isearch-backward
+                               ;; Actions
+                               "r"   'pdf-view-revert-buffer
+                               "o"   'pdf-links-action-perform
+                               "O"   'pdf-outline
+                               "zr"  'pdf-view-scale-reset)) 'append)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -351,37 +411,3 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-(with-eval-after-load 'mu4e
-  (setq mu4e-context-policy 'pick-first
-        mu4e-contexts `( ,(make-mu4e-context
-                           :name "Home"
-                           :enter-func (lambda () (mu4e-message "Entering Home context"))
-                           :leave-func (lambda () (mu4e-message "Leaving Home context"))
-                           ;; we match based on the contact-fields of the message
-                           :match-func (lambda (msg)
-                                         (when msg 
-                                           (mu4e-message-contact-field-matches msg 
-                                                                               :to "me@danieldk.eu")))
-                           :vars '( ( user-mail-address      . "me@danieldk.eu"  )
-                                    ( user-full-name         . "Daniël de Kok" )
-                                    ( mu4e-compose-signature . nil)))
-                         ,(make-mu4e-context
-                           :name "Work"
-                           :enter-func (lambda () (mu4e-message "Switch to the Work context"))
-                           :match-func (lambda (msg)
-                                         (when msg 
-                                           (mu4e-message-contact-field-matches msg 
-                                                                               :to "daniel.de-kok@uni-tuebingen.de")))
-                           :vars '( ( user-mail-address       . "daniel.de-kok@uni-tuebingen.de" )
-                                    ( user-full-name          . "Daniël de Kok" )
-                                    ( mu4e-compose-signature  . nil))))))
-
-(with-eval-after-load 'org
-  (setq org-agenda-files '("~/Dropbox/org/")
-        org-default-notes-file (concat org-directory "/notes.org")
-        org-capture-templates
-        '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
-           "* TODO %?\n  %i\n  %a")
-          ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
-           "* %?\nEntered on %U\n  %i\n  %a"))))
