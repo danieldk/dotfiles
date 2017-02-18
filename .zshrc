@@ -29,45 +29,23 @@ elif [ $(uname -s) = "Darwin" ] ; then
   fi
 fi
 
-# Intel MKL
-if [ $(uname -s) = "Linux" -a -x ~/intel/bin/compilervars.sh ] ; then
-  source ~/intel/bin/compilervars.sh intel64
-fi
-
 # Prompt
 #autoload -U promptinit
 #promptinit
 
 export PS1='%F{green}%~%f %# '
-export RPS1='$(git_super_status)'
+#export RPS1='$(git_super_status)'
 
-source ~/.zsh/git-prompt/zshrc.sh
+#source ~/.zsh/git-prompt/zshrc.sh
 source ~/.zsh/z/z.sh
 
 #export GOROOT=/usr/local/go
-export GOPATH=~/go
-
-export PATH=$PATH:~/go/bin
 
 export SP_CTYPE=utf8
 export SP_CSETLEN=212
 export ALPINO_HOME=~/sw/Alpino
 
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
 # Use JDK 7
 #export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
-# Commands compiled with Cabal
-if [ -d ~/.cabal/bin ]; then
-  export PATH=$PATH:~/.cabal/bin
-fi
-
 #~/.zsh/archey/archey -c
-
-alias vpn='sudo openconnect -u nnsdd01 https://ras.uni-tuebingen.de'
-
-source $HOME/.cargo/env 2> /dev/null
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
