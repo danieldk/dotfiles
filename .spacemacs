@@ -31,12 +31,15 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      bibtex
+     (colors :variables
+             colors-enable-nyan-cat-progress-bar 't)
      python
      go
      rust
@@ -50,13 +53,13 @@ values."
            mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e"
            :packages
            (not mu4e-maildirs-extension))
-     org
+     (org :variables org-enable-github-support t)
      (osx :variables
           osx-use-option-as-meta nil)
      ranger
+     scala
      (shell :variables
             shell-default-height 30
-            shell-default-position 'right
             shell-default-shell 'shell)
      ;; spell-checking
      syntax-checking
@@ -66,7 +69,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(ob-ipython)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -145,10 +148,10 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 14
                                :weight normal
                                :width normal
-                               :powerline-scale 1.0)
+                               :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -305,7 +308,18 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  (setq powerline-default-separator 'utf-8
+  (evil-leader/set-key-for-mode 'org-mode
+    "m" nil
+    "mp" 'org-preview-latex-fragment
+    "mI" 'org-toggle-inline-images
+    "mc" 'org-ctrl-c-ctrl-c)
+
+  (setq python-shell-prompt-detect-failure-warning nil
+
+        ;;powerline-default-separator 'utf-8
+
+        nyan-animate-nyancat nil
+        nyan-wavy-trail nil
 
         org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
         org-ref-pdf-directory "~/Dropbox/Papers/"
@@ -319,7 +333,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((gnuplot . t)))
+   '((gnuplot . t)
+     (python . t)
+     (ipython . t)))
 
   (with-eval-after-load 'mu4e
     (setq mu4e-drafts-folder  "/Drafts"
@@ -353,11 +369,33 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                                                                  :to "daniel.de-kok@uni-tuebingen.de")))
                              :vars '( ( user-mail-address       . "daniel.de-kok@uni-tuebingen.de" )
                                       ( user-full-name          . "Daniël de Kok" )
-                                      ( mu4e-compose-signature  . nil))))))
+                                      ( mu4e-compose-signature  . nil))))
+
+          mu4e-bookmarks `( ,(make-mu4e-bookmark
+                              :name  "Unread messages"
+                              :query "flag:unread AND NOT flag:trashed"
+                              :key ?u)
+                            ,(make-mu4e-bookmark
+                              :name "Today's messages"
+                              :query "date:today..now"
+                              :key ?t)
+                            ,(make-mu4e-bookmark
+                              :name "Last 7 days"
+                              :query "date:7d..now"
+                              :key ?w)
+                            ,(make-mu4e-bookmark
+                              :name "Messages with images"
+                              :query "mime:image/*"
+                              :key ?p)
+                            ,(make-mu4e-bookmark
+                              :name "SFB833"
+                              :query "from:sfb833"
+                              :key ?s))))
 
   (with-eval-after-load 'org
     (setq org-agenda-files '("/Users/daniel/Dropbox/org/")
           org-default-notes-file (concat org-directory "/notes.org")
+          org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
           org-capture-templates
           '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
              "* TODO %?\n  %i\n  %a")
@@ -404,7 +442,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (mu4e-maildirs-extension mu4e-alert ht org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl ranger go-guru go-eldoc company-go go-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flycheck-rust seq flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete toml-mode racer cargo rust-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme))))
+    (noflet ensime sbt-mode scala-mode ox-gfm web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data ob-ipython dash-functional ein websocket rainbow-mode rainbow-identifiers color-identifiers-mode mu4e-maildirs-extension mu4e-alert ht org-ref key-chord ivy helm-bibtex parsebib biblio biblio-core yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl ranger go-guru go-eldoc company-go go-mode xterm-color smeargle shell-pop orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download multi-term mmm-mode markdown-toc markdown-mode magit-gitflow htmlize helm-gitignore helm-company helm-c-yasnippet gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flycheck-rust seq flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help company-statistics company auto-yasnippet yasnippet ac-ispell auto-complete toml-mode racer cargo rust-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build spacemacs-theme)))
+ '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
