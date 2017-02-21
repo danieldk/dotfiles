@@ -310,7 +310,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   (evil-leader/set-key-for-mode 'org-mode
     "m" nil
-    "mp" 'org-preview-latex-fragment
+    "mp" 'org-toggle-latex-fragment
     "mI" 'org-toggle-inline-images
     "mc" 'org-ctrl-c-ctrl-c)
 
@@ -324,6 +324,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
         org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
         org-ref-pdf-directory "~/Dropbox/Papers/"
         org-ref-bibliography-notes "~/Dropbox/org/literature.org"
+        org-latex-create-formula-image-program 'imagemagick
 
         ;; Use msmtp for sending mail.
         message-send-mail-function 'message-send-mail-with-sendmail
@@ -335,6 +336,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
    'org-babel-load-languages
    '((gnuplot . t)
      (python . t)
+     (latex . t)
      (ipython . t)))
 
   (with-eval-after-load 'mu4e
