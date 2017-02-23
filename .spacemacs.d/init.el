@@ -63,6 +63,7 @@ values."
             shell-default-shell 'shell)
      ;; spell-checking
      syntax-checking
+     tufte-latex
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
