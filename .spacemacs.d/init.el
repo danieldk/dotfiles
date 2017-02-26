@@ -324,7 +324,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
         org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
         org-ref-pdf-directory "~/Dropbox/Papers/"
-        org-ref-bibliography-notes "~/Dropbox/org/literature.org"
+        org-ref-bibliography-notes "~/git/org/literature.org"
         org-latex-create-formula-image-program 'imagemagick
 
         ;; Use msmtp for sending mail.
@@ -396,13 +396,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
                               :key ?s))))
 
   (with-eval-after-load 'org
-    (setq org-agenda-files '("/Users/daniel/Dropbox/org/")
+    (setq org-agenda-files '("/Users/daniel/git/org/")
           org-default-notes-file (concat org-directory "/notes.org")
           org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
           org-capture-templates
-          '(("t" "Todo" entry (file+headline "~/Dropbox/org/tasks.org" "Tasks")
+          '(("t" "Todo" entry (file+headline "~/git/org/tasks.org" "Tasks")
              "* TODO %?\n  %i\n  %a")
-            ("j" "Journal" entry (file+datetree "~/Dropbox/org/journal.org")
+            ("j" "Journal" entry (file+datetree "~/git/org/journal.org")
              "* %?\nEntered on %U\n  %i\n  %a"))))
 
 
