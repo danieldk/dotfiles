@@ -322,8 +322,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
         nyan-animate-nyancat nil
         nyan-wavy-trail nil
 
-        org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
-        org-ref-pdf-directory "~/Dropbox/Papers/"
+        org-ref-default-bibliography '("~/git/papers/references.bib")
+        org-ref-pdf-directory "~/git/papers/"
         org-ref-bibliography-notes "~/git/org/literature.org"
         org-latex-create-formula-image-program 'imagemagick
 
@@ -396,7 +396,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
                               :key ?s))))
 
   (with-eval-after-load 'org
-    (setq org-agenda-files '("/Users/daniel/git/org/")
+    (setq org-agenda-files '("~/git/org/")
           org-default-notes-file (concat org-directory "/notes.org")
           org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
           org-capture-templates
