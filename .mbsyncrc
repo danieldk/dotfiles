@@ -1,0 +1,24 @@
+IMAPAccount fastmail
+Host imap.fastmail.com
+Port 993
+User foo@bar.eu
+PassCmd "~/.mbsync.py foo@bar.eu imap.fastmail.com"
+UseIMAPS yes
+CertificateFile /usr/local/etc/openssl/cert.pem
+
+IMAPStore fastmail-remote
+Account fastmail
+
+MaildirStore fastmail-local
+Path ~/Maildir/
+Inbox ~/Maildir/INBOX
+Flatten .
+
+Channel fastmail
+Master :fastmail-remote:
+Slave :fastmail-local:
+Create Slave
+Expunge Both
+Pattern *
+SyncState *
+Sync All
