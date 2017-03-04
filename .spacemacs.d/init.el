@@ -347,7 +347,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
           mu4e-sent-messages-behavior 'delete
           mu4e-refile-folder "/Archive"
           mu4e-get-mail-command "mbsync -a"
-          mu4e-update-interval 900
           mu4e-change-filenames-when-moving t
           mu4e-context-policy 'pick-first
           mu4e-view-show-addresses t
