@@ -322,6 +322,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
         nyan-animate-nyancat nil
         nyan-wavy-trail nil
 
+        reftex-default-bibliography '("~/git/papers/references.bib")
+
         org-ref-default-bibliography '("~/git/papers/references.bib")
         org-ref-pdf-directory "~/git/papers/"
         org-ref-bibliography-notes "~/git/org/literature.org"
