@@ -40,6 +40,7 @@ values."
      bibtex
      (colors :variables
              colors-enable-nyan-cat-progress-bar 't)
+     (elfeed :variables rmh-elfeed-org-files (list "~/git/org/feeds.org"))
      python
      go
      rust
