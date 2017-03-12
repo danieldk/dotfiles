@@ -324,6 +324,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
         nyan-animate-nyancat nil
         nyan-wavy-trail nil
 
+        shr-use-fonts nil
+        shr-width 80
+        shr-color-visible-luminance-min 80
+
         reftex-default-bibliography '("~/git/papers/references.bib")
 
         org-ref-default-bibliography '("~/git/papers/references.bib")
