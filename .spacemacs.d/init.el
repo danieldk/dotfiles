@@ -49,6 +49,7 @@ values."
      ;; better-defaults
      emacs-lisp
      git
+     latex
      markdown
      (mu4e :variables
            mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e"
