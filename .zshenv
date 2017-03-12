@@ -1,3 +1,12 @@
+# Locale
+if [ $(uname -s) = "Linux" ] ; then
+  export LC_ALL="en_US.UTF-8"
+elif [ $(uname -s) = "Darwin" ] ; then
+  if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+  fi
+fi
+
 # Intel MKL
 if [ $(uname -s) = "Linux" -a -x ~/intel/bin/compilervars.sh ] ; then
     source ~/intel/bin/compilervars.sh intel64
