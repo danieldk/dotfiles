@@ -13,7 +13,6 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Don't write .DS_Store files on network volumes.
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-brew install archey
 brew install z
 brew install tmux
 brew install reattach-to-user-namespace
