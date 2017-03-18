@@ -348,6 +348,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
      (latex . t)
      (ipython . t)))
 
+
+  (with-eval-after-load 'elfeed
+    (defface rust-elfeed-entry
+      '((t :foreground "#f77"))
+      "Rust-related entry.")
+
+    (push '(rust rust-elfeed-entry)
+          elfeed-search-face-alist)
+  )
+
+
   (with-eval-after-load 'mu4e
     (setq mu4e-drafts-folder  "/Drafts"
           mu4e-trash-folder  "/Trash"
@@ -358,6 +369,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
           mu4e-change-filenames-when-moving t
           mu4e-context-policy 'pick-first
           mu4e-view-show-addresses t
+          mu4e-html2text-command 'mu4e-shr2text
           mu4e-contexts `( ,(make-mu4e-context
                              :name "Home"
                              :enter-func (lambda () (mu4e-message "Entering Home context"))
