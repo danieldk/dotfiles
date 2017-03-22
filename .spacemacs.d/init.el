@@ -419,7 +419,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
                               :key ?s))))
 
   (with-eval-after-load 'org
-    (setq org-agenda-files '("~/git/org/")
+    (require 'ox-latex)
+    (add-to-list 'org-latex-packages-alist '("" "minted"))
+    (setq org-latex-listings 'minted)
+
+    (setq org-latex-pdf-process
+          '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
+
+          org-agenda-files '("~/git/org/")
           org-default-notes-file (concat org-directory "/notes.org")
           org-capture-templates
           '(("t" "Todo" entry (file+headline "~/git/org/tasks.org" "Tasks")
