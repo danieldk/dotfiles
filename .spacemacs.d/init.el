@@ -334,6 +334,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
         org-ref-pdf-directory "~/git/papers/"
         org-ref-bibliography-notes "~/git/org/literature.org"
         org-latex-create-formula-image-program 'imagemagick
+        org-latex-table-scientific-notation "%s\\times10^{%s}"
 
         ;; Use msmtp for sending mail.
         message-send-mail-function 'message-send-mail-with-sendmail
