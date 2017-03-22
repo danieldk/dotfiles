@@ -317,7 +317,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
     "mI" 'org-toggle-inline-images
     "mc" 'org-ctrl-c-ctrl-c)
 
+
   (setq python-shell-prompt-detect-failure-warning nil
+
+        helm-ag-base-command "rg --no-heading"
 
         ;;powerline-default-separator 'utf-8
 
