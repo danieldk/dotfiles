@@ -337,6 +337,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
         org-ref-bibliography-notes "~/git/org/literature.org"
         org-latex-create-formula-image-program 'imagemagick
         org-latex-table-scientific-notation "%s\\times10^{%s}"
+        org-bullets-bullet-list '("①" "②" "③ " "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩" "⑪" "⑫" "⑬" "⑭" "⑮")
 
         ;; Use msmtp for sending mail.
         message-send-mail-function 'message-send-mail-with-sendmail
