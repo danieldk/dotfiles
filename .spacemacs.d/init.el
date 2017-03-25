@@ -59,7 +59,6 @@ values."
      (osx :variables
           osx-use-option-as-meta nil)
      ranger
-     scala
      (shell :variables
             shell-default-height 30
             shell-default-shell 'shell)
