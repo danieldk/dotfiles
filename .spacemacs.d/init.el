@@ -414,7 +414,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
                               :key ?p)
                             ,(make-mu4e-bookmark
                               :name "SFB833"
-                              :query "from:sfb833"
+                              :query "from:sfb*"
                               :key ?s))))
 
   (with-eval-after-load 'org
