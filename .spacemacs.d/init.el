@@ -354,11 +354,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 
   (with-eval-after-load 'elfeed
-    (defface rust-elfeed-entry
+    (defface important-elfeed-entry
       '((t :foreground "#f77"))
-      "Rust-related entry.")
+      "Important entry.")
 
-    (push '(rust rust-elfeed-entry)
+    (push '(important important-elfeed-entry)
           elfeed-search-face-alist)
   )
 
