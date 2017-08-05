@@ -266,7 +266,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -336,7 +336,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
         org-ref-pdf-directory "~/git/papers/"
         org-ref-bibliography-notes "~/git/org/literature.org"
         org-latex-create-formula-image-program 'imagemagick
-        org-latex-table-scientific-notation "%s\\times10^{%s}"
+        org-latex-table-scientific-notation "$%s\\times10^{%s}$"
         org-bullets-bullet-list '("①" "②" "③ " "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩" "⑪" "⑫" "⑬" "⑭" "⑮")
 
         ;; Use msmtp for sending mail.
@@ -369,6 +369,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
           mu4e-sent-folder   "/Sent Items"
           mu4e-sent-messages-behavior 'delete
           mu4e-refile-folder "/Archive"
+
           mu4e-get-mail-command "mbsync -a"
           mu4e-change-filenames-when-moving t
           mu4e-context-policy 'pick-first
@@ -420,13 +421,22 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (with-eval-after-load 'org
     (require 'ox-latex)
+    (require 'ox-beamer)
     (add-to-list 'org-latex-packages-alist '("" "minted"))
     (setq org-latex-listings 'minted)
+
+    (defun my-beamer-bold (contents backend info)
+      (when (eq backend 'beamer)
+        (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+
+    (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
 
     (setq org-latex-pdf-process
           '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
             "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
             "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
+
+          org-html-htmlize-output-type 'css
 
           org-agenda-files '("~/git/org/")
           org-default-notes-file (concat org-directory "/notes.org")
