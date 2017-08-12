@@ -28,6 +28,39 @@ is slow, I use the [[http://www.holgerschurig.de/en/emacs-efficiently-untangling
   (require 'use-package)
 #+END_SRC
 
+* Appearance
+** Cleanup
+
+Emacs has some UI elements that I do not use and waste screen space,
+in particular:
+
+- The tool bar
+- The scroll bar
+- The menu bar (outside macOS)
+
+Disable these UI elements:
+
+#+BEGIN_SRC emacs-lisp
+(when window-system
+  (dolist (mode
+	   '(tool-bar-mode
+	     tooltip-mode
+	     scroll-bar-mode
+	     menu-bar-mode
+	     blink-cursor-mode))
+    (funcall mode 0)))
+#+END_SRC
+
+** Font
+
+Set /Operator Mono/ as the main font. This font has the advantage
+of supporting italic text.
+
+#+BEGIN_SRC emacs-lisp
+  (when window-system
+    (set-default-font "Operator Mono 15"))
+#+END_SRC
+
 * Evil
 
 #+BEGIN_SRC emacs-lisp

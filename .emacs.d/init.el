@@ -5,18 +5,6 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(when window-system
-  (dolist (mode
-	   '(tool-bar-mode
-	     tooltip-mode
-	     scroll-bar-mode
-	     menu-bar-mode
-	     blink-cursor-mode))
-    (funcall mode 0))
-  (set-default-font "Operator Mono 15")
-  )
-
-
 ;; Tangling with org-babel is slow! Use the untangling approach
 ;; of Holger Schurig instead:
 ;;
