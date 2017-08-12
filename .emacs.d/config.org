@@ -362,6 +362,19 @@ Use ~racer~ for completions.
     (eyebrowse-setup-opinionated-keys)
   )
 #+END_SRC
+** File browsing (ranger)
+
+#+BEGIN_SRC emacs-lisp
+  (use-package ranger
+    :ensure t
+    :general
+    (:states '(normal motion emacs)
+     :prefix "SPC"
+     "ar" '(ranger :which-key "ranger")
+     "ad" '(deer :which-key "deer"))
+    :config
+    (ranger-override-dired-mode t))
+#+END_SRC
 
 ** Projects
 
