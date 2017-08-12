@@ -334,6 +334,21 @@ Use ~racer~ for completions.
     :config
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+END_SRC
+* TeX
+
+#+BEGIN_SRC emacs-lisp
+  (use-package tex
+    :ensure auctex
+    :mode ("\\.tex\\'" . TeX-latex-mode)
+
+    :config
+    (use-package latex
+      :defer t
+      :config
+      (use-package preview)
+      (add-hook 'LaTeX-mode-hook 'reftex-mode)))
+
+#+END_SRC
 
 * Miscelaneous
 ** Workspaces
