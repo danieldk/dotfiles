@@ -18,14 +18,20 @@ is slow, I use the [[http://www.holgerschurig.de/en/emacs-efficiently-untangling
 * Package management
 
 #+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/"))
   (package-initialize)
 
-  (require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
-  (cask-initialize)
-  (require 'pallet)
-  (pallet-mode t)
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
 
-  (require 'use-package)
+  (eval-when-compile
+    (require 'use-package))
+  (require 'diminish)
+  (require 'bind-key)
 #+END_SRC
 
 * Appearance
@@ -66,18 +72,23 @@ of supporting italic text.
 The standard Emacs theme is blinding :).
 
 #+BEGIN_SRC emacs-lisp
-(load-theme 'monokai t)
+  (use-package monokai-theme
+    :ensure t
+    :config
+    (load-theme 'monokai t))
 #+END_SRC
 
 * Evil
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
+    :ensure t
     :init
     (setq evil-want-C-i-jump nil)
     (evil-mode 1))
 
   (use-package which-key
+    :ensure t
     :init (which-key-mode)
 
     :config
@@ -90,6 +101,7 @@ The standard Emacs theme is blinding :).
 
 #+BEGIN_SRC emacs-lisp
   (use-package general
+    :ensure t
     :config
     (general-evil-setup t)
 
@@ -118,6 +130,7 @@ The standard Emacs theme is blinding :).
 
 #+BEGIN_SRC emacs-lisp
 (use-package ivy
+  :ensure t
   :diminish (ivy-mode . "")
   :init (ivy-mode 1)
   :config
@@ -127,6 +140,7 @@ The standard Emacs theme is blinding :).
 )
 
 (use-package counsel
+  :ensure t
   :bind*                           ; load counsel when pressed
   (("M-x"     . counsel-M-x)       ; M-x use counsel
    ("C-x C-f" . counsel-find-file) ; C-x C-f use counsel-find-file
@@ -142,6 +156,7 @@ The standard Emacs theme is blinding :).
 
 #+BEGIN_SRC emacs-lisp
   (use-package magit
+    :ensure t
     :general
     (:states '(normal motion emacs)
      :prefix "SPC"
@@ -149,13 +164,15 @@ The standard Emacs theme is blinding :).
      "gs" 'magit-status)
 
     :config
-    (use-package evil-magit))
+    (use-package evil-magit
+      :ensure t))
 #+END_SRC
 
 * org mode
 
 #+BEGIN_SRC emacs-lisp
   (use-package org
+    :ensure t
     :general
     (:states '(normal motion emacs)
      :keymaps 'org-mode-map
@@ -230,6 +247,7 @@ The standard Emacs theme is blinding :).
        (latex . t))))
 
   (use-package org-ref
+    :ensure t
     :init
     ;;:mode "\\.org\\'"
     :after org
@@ -244,6 +262,7 @@ The standard Emacs theme is blinding :).
 	  org-ref-bibliography-notes "~/git/org/literature.org"))
 
   (use-package evil-org
+    :ensure t
     :after org
     :config
     (add-hook 'org-mode-hook 'evil-org-mode)
@@ -252,6 +271,7 @@ The standard Emacs theme is blinding :).
 		(evil-org-set-key-theme '(todo)))))
 
   (use-package org-bullets
+    :ensure t
     :after org
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -264,6 +284,7 @@ The standard Emacs theme is blinding :).
 
 #+BEGIN_SRC emacs-lisp
   (use-package eyebrowse
+    :ensure t
     :init
     (eyebrowse-mode t)
     :config
@@ -275,6 +296,7 @@ The standard Emacs theme is blinding :).
 
 #+BEGIN_SRC emacs-lisp
   (use-package projectile
+    :ensure t
     :general
     (:states '(normal motion emacs)
      :prefix "SPC"
@@ -296,6 +318,7 @@ The standard Emacs theme is blinding :).
 
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
+    :ensure t
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
   )
@@ -312,6 +335,7 @@ numbering in large files.
 
 #+BEGIN_SRC emacs-lisp
   (use-package nlinum-relative
+    :ensure t
     :config
     (nlinum-relative-setup-evil)
     (add-hook 'prog-mode-hook 'nlinum-relative-mode)
