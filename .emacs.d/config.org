@@ -61,6 +61,14 @@ of supporting italic text.
     (set-default-font "Operator Mono 15"))
 #+END_SRC
 
+** Theme
+
+The standard Emacs theme is blinding :).
+
+#+BEGIN_SRC emacs-lisp
+(load-theme 'monokai t)
+#+END_SRC
+
 * Evil
 
 #+BEGIN_SRC emacs-lisp
