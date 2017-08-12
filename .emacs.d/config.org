@@ -302,3 +302,16 @@ The standard Emacs theme is blinding :).
 #+BEGIN_SRC emacs-lisp
   (setq reftex-default-bibliography '("~/git/papers/references.bib")) 
 #+END_SRC
+** Relative line numbers
+
+Use relative line numbers to ease evil operations. ~nlinum-relative~
+only recomputes line numbers when Emacs is idle, speeding up line
+numbering in large files.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package nlinum-relative
+    :config
+    (nlinum-relative-setup-evil)
+    (add-hook 'prog-mode-hook 'nlinum-relative-mode)
+    (add-hook 'org-mode-hook 'nlinum-relative-mode))
+#+END_SRC

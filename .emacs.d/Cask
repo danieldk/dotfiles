@@ -13,6 +13,7 @@
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "monokai-theme")
+(depends-on "nlinum-relative")
 (depends-on "org-bullets")
 (depends-on "org-ref")
 (depends-on "pallet")
