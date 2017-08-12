@@ -74,6 +74,7 @@ The standard Emacs theme is blinding :).
 #+BEGIN_SRC emacs-lisp
   (use-package evil
     :init
+    (setq evil-want-C-i-jump nil)
     (evil-mode 1))
 
   (use-package which-key
