@@ -118,10 +118,10 @@ The standard Emacs theme is blinding :).
 
      "wv" '(split-window-horizontally :which-key "split vertical")
      "ws" '(split-window-vertically :which-key "split horizontal")
-     "wk" '(windmove-up :which-key "up")
-     "wj" '(windmove-down :which-key "down")
-     "wl" '(windmove-left :which-key "left")
-     "wr" '(windmove-right :which-key "right")
+     "wk" '(evil-window-up :which-key "up")
+     "wj" '(evil-window-down :which-key "down")
+     "wh" '(evil-window-left :which-key "left")
+     "wl" '(evil-window-right :which-key "right")
      "wd" '(delete-window :which-key "delete")
      ))
 #+END_SRC
