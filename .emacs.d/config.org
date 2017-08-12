@@ -1,5 +1,5 @@
 #+TITLE: Emacs Configuration
-#+AUTHOR: Daniel de Kok
+#+AUTHOR: Daniël de Kok
 
 * Introduction
 
@@ -160,7 +160,7 @@ The standard Emacs theme is blinding :).
     :general
     (:states '(normal motion emacs)
      :prefix "SPC"
-     "g"  '(:ignore t :which-key "Git")  
+     "g"  '(:ignore t :which-key "Git")
      "gs" 'magit-status)
 
     :config
@@ -236,6 +236,9 @@ The standard Emacs theme is blinding :).
      "k" 'evil-previous-line)
 
     :config
+    (add-hook 'org-mode-hook
+              (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+
     (setq org-agenda-files '("~/git/org/")
 	  org-latex-create-formula-image-program 'imagemagick
 	  org-latex-table-scientific-notation "$%s\\times10^{%s}$")
@@ -299,7 +302,7 @@ Use ~company~ for completion.
 #+END_SRC
 
 ** Rust
- 
+
 Load ~rust-mode~ to make editing Rust code more comfortable.
 
 #+BEGIN_SRC emacs-lisp
@@ -353,12 +356,12 @@ Use ~racer~ for completions.
     :general
     (:states '(normal motion emacs)
      :prefix "SPC"
-     "p"  '(:ignore t :which-key "Project")  
+     "p"  '(:ignore t :which-key "Project")
      "pf" '(projectile-find-file :which-key "Find in project")
      "pl" '(projectile-switch-project :which-key "Switch project"))
 
     :init (projectile-mode 1)
-   
+
     :config
     (progn
       (setq projectile-enable-caching t)
@@ -378,7 +381,7 @@ Use ~racer~ for completions.
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (setq reftex-default-bibliography '("~/git/papers/references.bib")) 
+  (setq reftex-default-bibliography '("~/git/papers/references.bib"))
 #+END_SRC
 ** Relative line numbers
 
