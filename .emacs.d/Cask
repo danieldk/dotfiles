@@ -12,6 +12,7 @@
 (depends-on "ivy-bibtex")
 (depends-on "magit")
 (depends-on "markdown-mode")
+(depends-on "monokai-theme")
 (depends-on "org-bullets")
 (depends-on "org-ref")
 (depends-on "pallet")
