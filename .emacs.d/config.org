@@ -163,6 +163,7 @@ The standard Emacs theme is blinding :).
      "ma" '(org-agenda :which-key "Agenda")
      "mA" '(org-archive-subtree :which-key "Archive")
      "md" '(org-deadline :which-key "Deadline")
+     "me" '(org-export-dispatch :which-key "Export")
      "mP" '(org-set-property :which-key "Property")
      "m:" '(org-set-tags :which-key "Tags")
 
