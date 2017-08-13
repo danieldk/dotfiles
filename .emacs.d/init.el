@@ -1,4 +1,5 @@
 (setenv "LANG" "en_US.UTF-8")
+(set-language-environment "UTF-8")
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
