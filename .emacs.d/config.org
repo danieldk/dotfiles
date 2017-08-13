@@ -112,13 +112,13 @@ Set up Evil. I swap ~:~ and ~;~ since I use ex more frequently :).
     (general-define-key
      :states '(normal motion emacs)
      :prefix "SPC"
-     "b"  '(:ignore t :which-key "Buffer")
-     "bb" '(ivy-switch-buffer "Switch buffer")
-     "bd" '(kill-this-buffer "Kill buffer")
+     "b"  '(:ignore t :which-key "buffer")
+     "bb" '(ivy-switch-buffer "switch buffer")
+     "bd" '(kill-this-buffer "kill buffer")
 
-     "f"  '(:ignore t :which-key "File")
+     "f"  '(:ignore t :which-key "file")
      "fs" '(save-buffer)
-     "fr" '(ivy-recentf "Recent file")
+     "fr" '(ivy-recentf "recent file")
 
      "wv" '(split-window-horizontally :which-key "split vertical")
      "ws" '(split-window-vertically :which-key "split horizontal")
@@ -127,6 +127,9 @@ Set up Evil. I swap ~:~ and ~;~ since I use ex more frequently :).
      "wh" '(evil-window-left :which-key "left")
      "wl" '(evil-window-right :which-key "right")
      "wd" '(delete-window :which-key "delete")
+
+     "q"  '(:ignore t :which-key "quit")
+     "qq" '(save-buffers-kill-emacs :which-key "quit")
      ))
 #+END_SRC
 
@@ -221,6 +224,7 @@ Set up swiper for in-file search.
      "md" '(org-deadline :which-key "Deadline")
      "me" '(org-export-dispatch :which-key "Export")
      "mP" '(org-set-property :which-key "Property")
+     "ms" '(org-edit-special :which-key "edit special")
      ;"m:" '(org-set-tags :which-key "Tags")
 
      ;; tables
