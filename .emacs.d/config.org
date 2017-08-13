@@ -368,6 +368,34 @@ Use ~racer~ for completions.
     :config
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+END_SRC
+
+Use the ~cargo~ minor mode for compilation. The keybindings
+are culled from Spacemacs.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package cargo
+    :ensure t
+    :general
+    (:states '(normal motion emacs)
+     :keymaps 'rust-mode-map
+     :prefix "SPC"
+     "mc." '(cargo-process-repeat)
+     "mcC" '(cargo-process-clean)
+     "mcX" '(cargo-process-run-example)
+     "mcc" '(cargo-process-build)
+     "mcd" '(cargo-process-doc)
+     "mce" '(cargo-process-bench)
+     "mcf" '(cargo-process-current-test)
+     "mcf" '(cargo-process-fmt)
+     "mci" '(cargo-process-init)
+     "mcn" '(cargo-process-new)
+     "mco" '(cargo-process-current-file-tests)
+     "mcs" '(cargo-process-search)
+     "mcu" '(cargo-process-update)
+     "mcx" '(cargo-process-run)
+     "mt"  '(cargo-process-test)))
+#+END_SRC
+
 * TeX
 
 #+BEGIN_SRC emacs-lisp
