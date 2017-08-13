@@ -80,6 +80,8 @@ The standard Emacs theme is blinding :).
 
 * Evil
 
+Set up Evil. I swap ~:~ and ~;~ since I use ex more frequently :).
+
 #+BEGIN_SRC emacs-lisp
   (use-package evil
     :ensure t
@@ -92,6 +94,8 @@ The standard Emacs theme is blinding :).
     :init (which-key-mode)
 
     :config
+    (define-key evil-motion-state-map (kbd ":") 'evil-repeat-find-char)
+    (define-key evil-motion-state-map (kbd ";") 'evil-ex)
     (which-key-setup-side-window-right-bottom)
     (setq which-key-sort-order 'which-key-key-order-alpha
           which-key-side-window-max-width 0.33
