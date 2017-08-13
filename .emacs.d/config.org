@@ -279,11 +279,21 @@ Set up swiper for in-file search.
 
     :config
     (add-hook 'org-mode-hook
-              (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+	      (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 
     (setq org-agenda-files '("~/git/org/")
 	  org-latex-create-formula-image-program 'imagemagick
-	  org-latex-table-scientific-notation "$%s\\times10^{%s}$")
+	  org-latex-table-scientific-notation "$%s\\times10^{%s}$"
+	  org-capture-templates
+	  '(("t" "Todo" entry (file+headline "~/git/org/tasks.org" "Tasks")
+	     "* TODO %?\n  %i\n  %a")
+	    ("j" "Journal" entry (file+datetree "~/git/org/journal.org")
+	     "* %?\nEntered on %U\n  %i\n  %a"))
+	  org-refile-targets '((nil :maxlevel . 2)
+			       (org-agenda-files :maxlevel . 2))
+	  org-outline-path-complete-in-steps nil
+	  org-refile-use-outline-path t)
+
 
     (org-babel-do-load-languages
      'org-babel-load-languages
