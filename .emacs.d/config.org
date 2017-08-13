@@ -128,6 +128,8 @@ The standard Emacs theme is blinding :).
 
 * Ivy
 
+Set up ivy for completion.
+
 #+BEGIN_SRC emacs-lisp
 (use-package ivy
   :ensure t
@@ -138,18 +140,50 @@ The standard Emacs theme is blinding :).
   (setq ivy-hight 20)
   (setq ivy-count-format "(%d/%d) ")
 )
+#+END_SRC
 
-(use-package counsel
-  :ensure t
-  :bind*                           ; load counsel when pressed
-  (("M-x"     . counsel-M-x)       ; M-x use counsel
-   ("C-x C-f" . counsel-find-file) ; C-x C-f use counsel-find-file
-   ("C-x C-r" . counsel-recentf)   ; search recently edited files
-   ("C-c f"   . counsel-git)       ; search for files in git repo
-   ("C-c s"   . counsel-git-grep)  ; search for regexp in git repo
-   ("C-c /"   . counsel-ag)        ; search for regexp in git repo using ag
-   ("C-c l"   . counsel-locate))   ; search for files or else using locate
-)
+Use counsel for replacing some common search commands. Also set up
+some Spacemacs-like search commands. I am not sure yet whether I like
+the shortcut for `counsel-unicode-char`. Does this really belong to
+search-related commands?
+
+#+BEGIN_SRC emacs-lisp
+  (use-package counsel
+    :ensure t
+    :bind*                           ; load counsel when pressed
+    (("M-x"     . counsel-M-x)       ; M-x use counsel
+     ("C-x C-f" . counsel-find-file) ; C-x C-f use counsel-find-file
+     ("C-x C-r" . counsel-recentf)   ; search recently edited files
+     ("C-c f"   . counsel-git)       ; search for files in git repo
+     ("C-c s"   . counsel-git-grep)  ; search for regexp in git repo
+     ("C-c /"   . counsel-rg)        ; search for regexp in git repo using ag
+     ("C-c l"   . counsel-locate))   ; search for files or else using locate
+    :general
+    (:states '(normal motion emacs)
+     :prefix "SPC"
+     "SPC" '(counsel-M-x :which-key "M-x")
+     "fo"  '(counsel-find-file :which-key "find file")
+     "s"   '(:ignore t :which-key "search")
+     "sc"  '(counsel-unicode-char :which-key "find character")
+     "sg"  '(counsel-rg :which-key "rg git"))
+    (:states '(normal motion emacs)
+     :keymaps 'org-mode-map
+     :prefix "SPC"
+     "mg"  '(counsel-org-goto :which-key "goto")
+     "m:"  '(counsel-org-tag :which-key "tag")))
+#+END_SRC
+
+Set up swiper for in-file search.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package swiper
+    :ensure t
+    :bind*
+    (("\C-s" . swiper))
+    :general
+    (:states '(normal motion emacs)
+     :prefix "SPC"
+     "ss" '(swiper :which-key "swiper")))
 #+END_SRC
 
 * Source management
@@ -183,7 +217,7 @@ The standard Emacs theme is blinding :).
      "md" '(org-deadline :which-key "Deadline")
      "me" '(org-export-dispatch :which-key "Export")
      "mP" '(org-set-property :which-key "Property")
-     "m:" '(org-set-tags :which-key "Tags")
+     ;"m:" '(org-set-tags :which-key "Tags")
 
      ;; tables
      "mtdc" '(org-table-delete-column)
