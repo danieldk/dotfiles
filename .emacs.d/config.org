@@ -430,6 +430,50 @@ are culled from Spacemacs.
 
 #+END_SRC
 
+* macOS
+
+#+BEGIN_SRC emacs-lisp
+(defun danieldk/system-is-mac ()
+  (eq system-type 'darwin))
+#+END_SRC
+
+** pbcopy
+
+~pbcopy~ enables the Emacs kill-ring to interact with the clipboard.
+
+#+BEGIN_SRC emacs-lisp
+  (when (danieldk/system-is-mac)
+    (use-package pbcopy
+      :ensure t))
+
+#+END_SRC
+
+** dictionary
+
+macOS dictionary lookups
+
+#+BEGIN_SRC emacs-lisp
+  (when (danieldk/system-is-mac)
+    (use-package osx-dictionary
+      :ensure t
+      :general
+      (:states '(normal motion emacs)
+       :prefix "SPC"
+       "aw" '(osx-dictionary-search-word-at-point :which-key "dictionary"))
+      (:states '(normal motion emacs)
+       :keymaps '(osx-dictionary-mode-map)
+       "q" 'osx-dictionary-quit
+       "r" 'osx-dictionary-read-word
+       "s" 'osx-dictionary-search-input
+       "o" 'osx-dictionary-open-dictionary.app)
+      ;;:config
+      ;;(define-key osx-dictionary-mode-map (kbd "q") 'osx-dictionary-quit)
+      ;;(define-key osx-dictionary-mode-map (kbd "r") 'osx-dictionary-read-word)
+      ;;(define-key osx-dictionary-mode-map (kbd "s") 'osx-dictionary-search-input)
+      ;;(define-key osx-dictionary-mode-map (kbd "o") 'osx-dictionary-open-dictionary.app)
+      ))
+#+END_SRC
+
 * Miscelaneous
 ** Workspaces
 
