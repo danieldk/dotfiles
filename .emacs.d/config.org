@@ -138,15 +138,15 @@ Set up Evil. I swap ~:~ and ~;~ since I use ex more frequently :).
 Set up ivy for completion.
 
 #+BEGIN_SRC emacs-lisp
-(use-package ivy
-  :ensure t
-  :diminish (ivy-mode . "")
-  :init (ivy-mode 1)
-  :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-hight 20)
-  (setq ivy-count-format "(%d/%d) ")
-)
+  (use-package ivy
+    :ensure t
+    :diminish (ivy-mode . "")
+    :init (ivy-mode 1)
+    :config
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-hight 20)
+    (setq ivy-count-format "(%d/%d) ")
+    :diminish ivy-mode)
 #+END_SRC
 
 Use counsel for replacing some common search commands. Also set up
@@ -333,7 +333,8 @@ Set up swiper for in-file search.
     (add-hook 'org-mode-hook 'evil-org-mode)
     (add-hook 'evil-org-mode-hook
 	      (lambda ()
-		(evil-org-set-key-theme '(todo)))))
+		(evil-org-set-key-theme '(todo))))
+    :diminish evil-org-mode)
 
   (use-package org-bullets
     :ensure t
@@ -357,9 +358,10 @@ Use ~company~ for completion.
 ~flycheck~ provides online syntax checking.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package flycheck
-    :ensure t
-    :init (global-flycheck-mode))
+    (use-package flycheck
+      :ensure t
+      :init (global-flycheck-mode)
+      :diminish flycheck-mode)
 #+END_SRC
 
 ** Rust
@@ -530,7 +532,9 @@ macOS dictionary lookups
       (setq projectile-enable-caching t)
       (setq projectile-require-project-root nil)
       (setq projectile-completion-system 'ivy)
-      (add-to-list 'projectile-globally-ignored-files ".DS_Store")))
+      (add-to-list 'projectile-globally-ignored-files ".DS_Store"))
+
+    :diminish projectile-mode)
 #+END_SRC
 
 ** Rainbow delimiters
