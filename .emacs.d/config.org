@@ -212,128 +212,135 @@ Set up swiper for in-file search.
 * org mode
 
 #+BEGIN_SRC emacs-lisp
-    (use-package org
-      :ensure t
-      :general
-      (:states '(normal motion emacs)
-       :keymaps 'org-mode-map
-       :prefix "SPC"
-       "m"  '(:ignore t :which-key "Mode")
-       "ma" '(org-agenda :which-key "Agenda")
-       "mA" '(org-archive-subtree :which-key "Archive")
-       "md" '(org-deadline :which-key "Deadline")
-       "me" '(org-export-dispatch :which-key "Export")
-       "mP" '(org-set-property :which-key "Property")
-       "ms" '(org-edit-special :which-key "edit special")
-       ;"m:" '(org-set-tags :which-key "Tags")
+  (use-package org
+    :ensure t
+    :general
+    (:states '(normal motion emacs)
+     :keymaps 'org-mode-map
+     :prefix "SPC"
+     "m"  '(:ignore t :which-key "Mode")
+     "ma" '(org-agenda :which-key "Agenda")
+     "mA" '(org-archive-subtree :which-key "Archive")
+     "md" '(org-deadline :which-key "Deadline")
+     "me" '(org-export-dispatch :which-key "Export")
+     "mP" '(org-set-property :which-key "Property")
+     "ms" '(org-edit-special :which-key "edit special")
+     ;"m:" '(org-set-tags :which-key "Tags")
 
-       ;; tables
-       "mtdc" '(org-table-delete-column)
-       "mtdr" '(org-table-kill-row)
-       "mte" '(org-table-eval-formula)
-       "mtE" '(org-table-export)
-       "mth" '(org-table-previous-field)
-       "mtH" '(org-table-move-column-left)
-       "mtic" '(org-table-insert-column)
-       "mtih" '(org-table-insert-hline)
-       "mtiH" '(org-table-hline-and-move)
-       "mtir" '(org-table-insert-row)
-       "mtI" '(org-table-import)
-       "mtj" '(org-table-next-row)
-       "mtJ" '(org-table-move-row-down)
-       "mtK" '(org-table-move-row-up)
-       "mtl" '(org-table-next-field)
-       "mtL" '(org-table-move-column-right)
-       "mtn" '(org-table-create)
-       "mtN" '(org-table-create-with-table.el)
-       "mtr" '(org-table-recalculate)
-       "mts" '(org-table-sort-lines)
-       "mttf" '(org-table-toggle-formula-debugger)
-       "mtto" '(org-table-toggle-coordinate-overlays)
-       "mtw" '(org-table-wrap-region))
+     ;; tables
+     "mtdc" '(org-table-delete-column)
+     "mtdr" '(org-table-kill-row)
+     "mte" '(org-table-eval-formula)
+     "mtE" '(org-table-export)
+     "mth" '(org-table-previous-field)
+     "mtH" '(org-table-move-column-left)
+     "mtic" '(org-table-insert-column)
+     "mtih" '(org-table-insert-hline)
+     "mtiH" '(org-table-hline-and-move)
+     "mtir" '(org-table-insert-row)
+     "mtI" '(org-table-import)
+     "mtj" '(org-table-next-row)
+     "mtJ" '(org-table-move-row-down)
+     "mtK" '(org-table-move-row-up)
+     "mtl" '(org-table-next-field)
+     "mtL" '(org-table-move-column-right)
+     "mtn" '(org-table-create)
+     "mtN" '(org-table-create-with-table.el)
+     "mtr" '(org-table-recalculate)
+     "mts" '(org-table-sort-lines)
+     "mttf" '(org-table-toggle-formula-debugger)
+     "mtto" '(org-table-toggle-coordinate-overlays)
+     "mtw" '(org-table-wrap-region))
 
-      (:states '(normal motion emacs)
-       :prefix "SPC"
+    (:states '(normal motion emacs)
+     :prefix "SPC"
 
-       ;; Global agenda mappings
-       "ao#" '(org-agenda-list-stuck-projects)
-       "ao/" '(org-occur-in-agenda-files)
-       "aoa" '(org-agenda-list)
-       "aoe" '(org-store-agenda-views)
-       "aom" '(org-tags-view)
-       "aoo" '(org-agenda)
-       "aos" '(org-search-view)
-       "aot" '(org-todo-list)
+     ;; Global agenda mappings
+     "ao#" '(org-agenda-list-stuck-projects)
+     "ao/" '(org-occur-in-agenda-files)
+     "aoa" '(org-agenda-list)
+     "aoe" '(org-store-agenda-views)
+     "aom" '(org-tags-view)
+     "aoo" '(org-agenda)
+     "aos" '(org-search-view)
+     "aot" '(org-todo-list)
 
-       ;; other
-       "aoO" '(org-clock-out)
-       "aoc" '(org-capture)
-       "aol" '(org-store-link))
+     ;; other
+     "aoO" '(org-clock-out)
+     "aoc" '(org-capture)
+     "aol" '(org-store-link))
 
-      (general-define-key
-       :keymaps 'org-agenda-mode-map
-       "h" 'evil-backward-char
-       "l" 'evil-forward-char
-       "j" 'evil-next-line
-       "k" 'evil-previous-line)
+    (general-define-key
+     :keymaps 'org-agenda-mode-map
+     "h" 'evil-backward-char
+     "l" 'evil-forward-char
+     "j" 'evil-next-line
+     "k" 'evil-previous-line)
 
-      :config
-      (add-hook 'org-mode-hook
-		(lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
+    :config
+    (defun my-beamer-bold (contents backend info)
+      (when (eq backend 'beamer)
+	(replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
 
-      (setq org-agenda-files '("~/git/org/")
-	    org-directory "~/git/org/"
-	    org-mobile-directory "~/Dropbox/Apps/MobileOrg"
-	    org-mobile-inbox-for-pull (expand-file-name "flagged.org" org-directory)
-	    org-latex-create-formula-image-program 'imagemagick
-	    org-latex-table-scientific-notation "$%s\\times10^{%s}$"
-	    org-capture-templates
-	    '(("t" "Todo" entry (file+headline "~/git/org/tasks.org" "Tasks")
-	       "* TODO %?\n  %i\n  %a")
-	      ("j" "Journal" entry (file+datetree "~/git/org/journal.org")
-	       "* %?\nEntered on %U\n  %i\n  %a"))
-	    org-refile-targets '((nil :maxlevel . 2)
-				 (org-agenda-files :maxlevel . 2))
-	    org-outline-path-complete-in-steps nil
-	    org-refile-use-outline-path t)
+    (add-hook 'org-mode-hook
+	      (lambda ()
+		(add-to-list 'write-file-functions 'delete-trailing-whitespace)
+		(add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)))
 
 
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '((gnuplot . t)
-	 (python . t)
-	 (latex . t))))
+    (setq org-agenda-files '("~/git/org/")
+	  org-directory "~/git/org/"
+	  org-mobile-directory "~/Dropbox/Apps/MobileOrg"
+	  org-mobile-inbox-for-pull (expand-file-name "flagged.org" org-directory)
+	  org-preview-latex-default-process 'imagemagick
+	  org-latex-table-scientific-notation "$%s\\times10^{%s}$"
+	  org-capture-templates
+	  '(("t" "Todo" entry (file+headline "~/git/org/tasks.org" "Tasks")
+	     "* TODO %?\n  %i\n  %a")
+	    ("j" "Journal" entry (file+datetree "~/git/org/journal.org")
+	     "* %?\nEntered on %U\n  %i\n  %a"))
+	  org-refile-targets '((nil :maxlevel . 2)
+			       (org-agenda-files :maxlevel . 2))
+	  org-outline-path-complete-in-steps nil
+	  org-refile-use-outline-path t)
 
-    (use-package org-ref
-      :ensure t
-      :init
-      ;;:mode "\\.org\\'"
-      :after org
-      :general
-      (:states '(normal motion emacs)
-       :prefix "SPC"
-       :keymaps 'bibtex-mode-map
-       "mh" '(org-ref-bibtex-hydra/body :which-key "BibTeX hydra"))
-      :config
-      (setq org-ref-default-bibliography '("~/git/papers/references.bib")
-	    org-ref-pdf-directory "~/git/papers/"
-	    org-ref-bibliography-notes "~/git/org/literature.org"))
 
-    (use-package evil-org
-      :ensure t
-      :after org
-      :config
-      (add-hook 'org-mode-hook 'evil-org-mode)
-      (add-hook 'evil-org-mode-hook
-		(lambda ()
-		  (evil-org-set-key-theme '(todo)))))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((gnuplot . t)
+       (python . t)
+       (latex . t))))
 
-    (use-package org-bullets
-      :ensure t
-      :after org
-      :config
-      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-      (setq org-bullets-bullet-list '("①" "②" "③ " "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩" "⑪" "⑫" "⑬" "⑭" "⑮")))
+  (use-package org-ref
+    :ensure t
+    :init
+    ;;:mode "\\.org\\'"
+    :after org
+    :general
+    (:states '(normal motion emacs)
+     :prefix "SPC"
+     :keymaps 'bibtex-mode-map
+     "mh" '(org-ref-bibtex-hydra/body :which-key "BibTeX hydra"))
+    :config
+    (setq org-ref-default-bibliography '("~/git/papers/references.bib")
+	  org-ref-pdf-directory "~/git/papers/"
+	  org-ref-bibliography-notes "~/git/org/literature.org"))
+
+  (use-package evil-org
+    :ensure t
+    :after org
+    :config
+    (add-hook 'org-mode-hook 'evil-org-mode)
+    (add-hook 'evil-org-mode-hook
+	      (lambda ()
+		(evil-org-set-key-theme '(todo)))))
+
+  (use-package org-bullets
+    :ensure t
+    :after org
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    (setq org-bullets-bullet-list '("①" "②" "③ " "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩" "⑪" "⑫" "⑬" "⑭" "⑮")))
 #+END_SRC
 
 * Programming languages
@@ -525,6 +532,9 @@ macOS dictionary lookups
 #+END_SRC
 
 ** Rainbow delimiters
+
+Rainbow delimiters colors delimiters such as parentheses, so that it
+is easy to see if they line up.
 
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
