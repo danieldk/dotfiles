@@ -64,7 +64,7 @@ of supporting italic text.
 
 #+BEGIN_SRC emacs-lisp
   (when window-system
-    (set-default-font "Operator Mono 15"))
+    (set-frame-font "Operator Mono 15"))
 #+END_SRC
 
 ** Theme
