@@ -67,7 +67,17 @@
     (my-tangle-config-org orgfile elfile))
   (load-file elfile))
 
+;; This is GPLv2. If you still don't know the details, read
+;; http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+(defun my-tangle-config-org-hook-func ()
+  (when (string= "config.org" (buffer-name))
+	(let ((orgfile (locate-user-emacs-file "config.org"))
+		  (elfile (locate-user-emacs-file "config.el")))
+	  (my-tangle-config-org orgfile elfile))))
+(add-hook 'after-save-hook #'my-tangle-config-org-hook-func)
+
 (custom-set-variables
+
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
