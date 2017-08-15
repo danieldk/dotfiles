@@ -656,3 +656,10 @@ Allow linking between mu4e and org-mode:
      :prefix "SPC"
      "ml" '(org-store-link)))
 #+END_SRC
+** Silence is golden
+
+Change /yes-no/ prompts to /y-n/ prompts:
+
+#+BEGIN_SRC emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
