@@ -493,7 +493,9 @@ macOS dictionary lookups
     (eyebrowse-mode t)
     :config
     (eyebrowse-setup-opinionated-keys)
-  )
+    (setq eyebrowse-mode-line-separator " "
+	  eyebrowse-new-workspace t)
+    :diminish eyebrowse-mode)
 #+END_SRC
 ** File browsing (ranger)
 
