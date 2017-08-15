@@ -537,6 +537,16 @@ macOS dictionary lookups
 #+BEGIN_SRC emacs-lisp
   (setq reftex-default-bibliography '("~/git/papers/references.bib"))
 #+END_SRC
+
+** Line and column numbers
+
+I like to see what line/column I am in in the status bar.
+
+#+BEGIN_SRC emacs-lisp
+  (setq line-number-mode t
+	column-number-mode t)
+#+END_SRC
+
 ** Relative line numbers
 
 Use relative line numbers to ease evil operations. ~nlinum-relative~
