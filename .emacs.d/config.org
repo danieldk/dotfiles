@@ -432,6 +432,28 @@ are culled from Spacemacs.
      "mt"  '(cargo-process-test)))
 #+END_SRC
 
+** Go
+
+Set up ~go-mode~ for syntax highlighting, fontification, etc:
+
+#+BEGIN_SRC emacs-lisp
+    (use-package go-mode
+      :ensure t
+      :mode "\\.go\\'"
+      :init
+      (add-hook 'before-save-hook #'gofmt-before-save)
+      (add-hook 'go-mode-hook (lambda ()
+				(set (make-local-variable 'company-backends) '(company-go))
+				(company-mode))))
+#+END_SRC
+
+Add Go completion using company:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company-go
+    :ensure t
+    :after go-mode)
+#+END_SRC
 * TeX
 
 #+BEGIN_SRC emacs-lisp
