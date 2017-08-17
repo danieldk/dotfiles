@@ -321,7 +321,6 @@ Set up swiper for in-file search.
   (use-package org-ref
     :ensure t
     :init
-    ;;:mode "\\.org\\'"
     :after org
     :general
     (:states '(normal motion emacs)
