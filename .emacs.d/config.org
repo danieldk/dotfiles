@@ -120,6 +120,8 @@ Set up Evil. I swap ~:~ and ~;~ since I use ex more frequently :).
      "fs" '(save-buffer)
      "fr" '(ivy-recentf "recent file")
 
+     "m"  '(:ignore t :which-key "mode")
+
      "wv" '(split-window-horizontally :which-key "split vertical")
      "ws" '(split-window-vertically :which-key "split horizontal")
      "wk" '(evil-window-up :which-key "up")
@@ -129,8 +131,12 @@ Set up Evil. I swap ~:~ and ~;~ since I use ex more frequently :).
      "wd" '(delete-window :which-key "delete")
 
      "q"  '(:ignore t :which-key "quit")
-     "qq" '(save-buffers-kill-emacs :which-key "quit")
-     ))
+     "qq" '(save-buffers-kill-emacs :which-key "quit"))
+    (general-define-key
+     :states '(normal motion emacs)
+     :prefix "SPC"
+     :keymaps 'bibtex-mode-map
+     "ms" '(bibtex-sort-buffer :which-key "sort buffer")))
 #+END_SRC
 
 * Ivy
