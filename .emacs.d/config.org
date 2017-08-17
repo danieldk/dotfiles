@@ -234,7 +234,13 @@ Set up swiper for in-file search.
      "ms" '(org-edit-special :which-key "edit special")
      ;"m:" '(org-set-tags :which-key "Tags")
 
+     ;; links
+     "ml"  '(:ignore t :which-key "link")
+     "mli" '(org-insert-link :which-key "insert")
+     "mlo" '(org-open-at-point :which-key "open")
+
      ;; tables
+     "mt"  '(:ignore t :which-key "table")
      "mtdc" '(org-table-delete-column)
      "mtdr" '(org-table-kill-row)
      "mte" '(org-table-eval-formula)
