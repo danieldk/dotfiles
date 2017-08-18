@@ -737,6 +737,47 @@ Allow linking between mu4e and org-mode:
      :prefix "SPC"
      "ml" '(org-store-link)))
 #+END_SRC
+** RSS feeds
+
+Use elfeed for reading RSS feeds.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed
+    :ensure t
+    :general
+    (:states '(normal motion emacs)
+	     :prefix "SPC"
+     "af" '(elfeed :which-key "elfeed"))
+    (:states '(normal motion)
+     :keymaps 'elfeed-search-mode-map
+     "c"  'elfeed-db-compact
+     "gr" 'elfeed-update
+     "gR" 'elfeed-search-update--force
+     "gu" 'elfeed-unjam
+     "o"  'elfeed-load-opml
+     "q"  'quit-window
+     "w"  'elfeed-web-start
+     "W"  'elfeed-web-stop
+     (kbd "RET") 'elfeed-search-show-entry)
+    (:states '(normal motion)
+     :keymaps 'elfeed-show-mode-map
+     "q" 'quit-window
+     (kbd "C-j") 'elfeed-show-next
+     (kbd "C-k") 'elfeed-show-prev))
+
+#+END_SRC
+
+Manage feeds using an org-mode file.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed-org
+    :ensure t
+    :after elfeed
+    :config
+    (elfeed-org)
+    (setq rmh-elfeed-org-files (list "~/git/org/feeds.org")))
+#+END_SRC
+
 ** Silence is golden
 
 Change /yes-no/ prompts to /y-n/ prompts:
