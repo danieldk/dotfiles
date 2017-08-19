@@ -171,7 +171,8 @@ search-related commands?
      ("C-c f"   . counsel-git)       ; search for files in git repo
      ("C-c s"   . counsel-git-grep)  ; search for regexp in git repo
      ("C-c /"   . counsel-rg)        ; search for regexp in git repo using ag
-     ("C-c l"   . counsel-locate))   ; search for files or else using locate
+     ("C-c l"   . counsel-locate)    ; search for files or else using locate
+     ("M-y"     . counsel-yank-pop))
     :general
     (:states '(normal motion emacs)
      :prefix "SPC"
