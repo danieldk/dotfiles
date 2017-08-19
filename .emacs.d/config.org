@@ -340,38 +340,58 @@ Add support for managing GitHub pull requests from magit status:
 	 '((gnuplot . t)
 	   (python . t)
 	   (latex . t))))
+#+END_SRC
 
-      (use-package org-ref
-	:ensure t
-	:init
-	:after org
-	:general
-	(:states '(normal motion emacs)
-	 :prefix "SPC"
-	 :keymaps 'bibtex-mode-map
-	 "mh" '(org-ref-bibtex-hydra/body :which-key "BibTeX hydra"))
-	:config
-	(setq org-ref-default-bibliography '("~/git/papers/references.bib")
-	      org-ref-pdf-directory "~/git/papers/"
-	      org-ref-bibliography-notes "~/git/org/literature.org")
-	(org-ref-define-citation-link "shortcite" ?z))
+** Citations
 
-      (use-package evil-org
-	:ensure t
-	:after org
-	:config
-	(add-hook 'org-mode-hook 'evil-org-mode)
-	(add-hook 'evil-org-mode-hook
-		  (lambda ()
-		    (evil-org-set-key-theme '(todo))))
-	:diminish evil-org-mode)
+Use ~org-ref~ to handle citations/references. Also add a ~shortcite~
+link, which is used by conferences that use ACL-like styles.
 
-      (use-package org-bullets
-	:ensure t
-	:after org
-	:config
-	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-	(setq org-bullets-bullet-list '("①" "②" "③ " "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩" "⑪" "⑫" "⑬" "⑭" "⑮")))
+#+BEGIN_SRC emacs-lisp
+  (use-package org-ref
+    :ensure t
+    :init
+    :after org
+    :general
+    (:states '(normal motion emacs)
+     :prefix "SPC"
+     :keymaps 'bibtex-mode-map
+     "mh" '(org-ref-bibtex-hydra/body :which-key "BibTeX hydra"))
+    :config
+    (setq org-ref-default-bibliography '("~/git/papers/references.bib")
+	  org-ref-pdf-directory "~/git/papers/"
+	  org-ref-bibliography-notes "~/git/org/literature.org")
+    (org-ref-define-citation-link "shortcite" ?z))
+#+END_SRC
+
+** Evil
+
+Set up compatibility with evil.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package evil-org
+    :ensure t
+    :after org
+    :config
+    (add-hook 'org-mode-hook 'evil-org-mode)
+    (add-hook 'evil-org-mode-hook
+	      (lambda ()
+		(evil-org-set-key-theme '(todo))))
+    :diminish evil-org-mode)
+#+END_SRC
+
+** Bullets
+
+I like numbered headers/bullets. Use the ~org-bullets~ package to use
+unicode numbered bullets.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :after org
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+    (setq org-bullets-bullet-list '("①" "②" "③ " "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩" "⑪" "⑫" "⑬" "⑭" "⑮")))
 #+END_SRC
 
 * Programming languages
