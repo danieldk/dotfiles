@@ -245,14 +245,15 @@ Add support for managing GitHub pull requests from magit status:
 	 "mA" '(org-archive-subtree :which-key "Archive")
 	 "md" '(org-deadline :which-key "Deadline")
 	 "me" '(org-export-dispatch :which-key "Export")
+	 "ml"  '(org-open-at-point :which-key "open")
 	 "mP" '(org-set-property :which-key "Property")
 	 "ms" '(org-edit-special :which-key "edit special")
 	 ;"m:" '(org-set-tags :which-key "Tags")
 
-	 ;; links
-	 "ml"  '(:ignore t :which-key "link")
-	 "mli" '(org-insert-link :which-key "insert")
-	 "mlo" '(org-open-at-point :which-key "open")
+	 ;; insert
+	 "mia" '(org-attach :which-key "attach")
+	 "mif" '(org-footnote-new :which-key "footnote")
+	 "mil" '(org-insert-link :which-key "link")
 
 	 ;; tables
 	 "mt"  '(:ignore t :which-key "table")
