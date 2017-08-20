@@ -583,6 +583,26 @@ macOS dictionary lookups
     :ensure t
     :init
     (eyebrowse-mode t)
+    :general
+    (:states '(normal motion emacs)
+     :prefix "SPC"
+     "l"  '(:ignore t :which-key "layout")
+     "l0"     '(eyebrowse-switch-to-window-config-0 :which-key "config 0")
+     "l1"     '(eyebrowse-switch-to-window-config-1 :which-key "config 1")
+     "l2"     '(eyebrowse-switch-to-window-config-2 :which-key "config 2")
+     "l3"     '(eyebrowse-switch-to-window-config-3 :which-key "config 3")
+     "l4"     '(eyebrowse-switch-to-window-config-4 :which-key "config 4")
+     "l5"     '(eyebrowse-switch-to-window-config-5 :which-key "config 5")
+     "l6"     '(eyebrowse-switch-to-window-config-6 :which-key "config 6")
+     "l7"     '(eyebrowse-switch-to-window-config-7 :which-key "config 7")
+     "l8"     '(eyebrowse-switch-to-window-config-8 :which-key "config 8")
+     "l9"     '(eyebrowse-switch-to-window-config-9 :which-key "config 9")
+     "l<tab>" '(eyebrowse-last-window-config :which-key "last")
+     "ld"     '(eyebrowse-close-window-config :which-key "close")
+     "ln"     '(eyebrowse-next-window-config :which-key "next")
+     "lp"     '(eyebrowse-previous-window-config :which-key "previous")
+     "lw"     '(eyebrowse-switch-to-window-config :which-key "switch")
+     "lt"     '(eyebrowse-rename-window-config :which-key "tag"))
     :config
     (eyebrowse-setup-opinionated-keys)
     (setq eyebrowse-mode-line-separator " "
