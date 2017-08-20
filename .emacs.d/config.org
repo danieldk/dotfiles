@@ -123,6 +123,9 @@ Set up Evil. I swap ~:~ and ~;~ since I use ex more frequently :).
 
      "m"  '(:ignore t :which-key "mode")
 
+     "t"  '(:ignore t :which-key "toggle")
+     "tf" '(toggle-frame-fullscreen :which-key "fullscreen")
+
      "wv" '(split-window-horizontally :which-key "split vertical")
      "ws" '(split-window-vertically :which-key "split horizontal")
      "wk" '(evil-window-up :which-key "up")
