@@ -399,6 +399,25 @@ unicode numbered bullets.
     (setq org-bullets-bullet-list '("①" "②" "③ " "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩" "⑪" "⑫" "⑬" "⑭" "⑮")))
 #+END_SRC
 
+** Identifier generation
+
+Automatically generate identifiers when linking.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-id
+    :ensure org
+    :after org
+    :config
+    (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+
+    ;; https://emacs.stackexchange.com/questions/12391/insert-org-id-link-at-point-via-outline-path-completion/12434#12434
+    (defun org-id-complete-link (&optional arg)
+      "Create an id: link using completion"
+      (concat "id:"
+	      (org-id-get-with-outline-path-completion)))
+    (org-link-set-parameters "id" :complete 'org-id-complete-link))
+#+END_SRC
+
 * Programming languages
 ** Company
 
