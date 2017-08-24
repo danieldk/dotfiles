@@ -92,6 +92,7 @@ Set up Evil. I swap ~:~ and ~;~ since I use ex more frequently :).
 
   (use-package which-key
     :ensure t
+    :diminish which-key-mode
     :init (which-key-mode)
 
     :config
@@ -150,7 +151,7 @@ Set up ivy for completion.
 #+BEGIN_SRC emacs-lisp
   (use-package ivy
     :ensure t
-    :diminish (ivy-mode . "")
+    :diminish ivy-mode
     :init (ivy-mode 1)
     :config
     (setq ivy-use-virtual-buffers t)
@@ -377,6 +378,7 @@ Set up compatibility with evil.
   (use-package evil-org
     :ensure t
     :after org
+    :diminish evil-org-mode
     :config
     (add-hook 'org-mode-hook 'evil-org-mode)
     (add-hook 'evil-org-mode-hook
@@ -426,16 +428,17 @@ Use ~company~ for completion.
 #+BEGIN_SRC emacs-lisp
   (use-package company
     :ensure t
+    :diminish company-mode
     :init (company-mode))
 #+END_SRC
 ** Flycheck
 ~flycheck~ provides online syntax checking.
 
 #+BEGIN_SRC emacs-lisp
-    (use-package flycheck
-      :ensure t
-      :init (global-flycheck-mode)
-      :diminish flycheck-mode)
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode)
+    :diminish flycheck-mode)
 #+END_SRC
 
 ** Rust
@@ -454,6 +457,7 @@ Use ~racer~ for completions.
   (use-package racer
     :ensure t
     :after rust-mode
+    :diminish racer-mode
     :config
     (add-hook 'rust-mode-hook #'racer-mode)
     (add-hook 'racer-mode-hook #'eldoc-mode)
@@ -674,6 +678,7 @@ is easy to see if they line up.
 #+BEGIN_SRC emacs-lisp
   (use-package rainbow-delimiters
     :ensure t
+    :diminish rainbow-mode
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
   )
@@ -853,4 +858,17 @@ Change /yes-no/ prompts to /y-n/ prompts:
 
 #+BEGIN_SRC emacs-lisp
   (fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+Diminish some modes:
+
+#+BEGIN_SRC emacs-lisp
+  (use-package autorevert
+    :diminish auto-revert-mode)
+
+  (use-package undo-tree
+    :diminish undo-tree-mode)
+
+  (use-package eldoc
+    :diminish eldoc-mode)
 #+END_SRC
