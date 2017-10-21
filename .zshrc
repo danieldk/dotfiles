@@ -20,6 +20,11 @@ export KEYTIMEOUT=1
 
 bindkey '^R' history-incremental-pattern-search-backward
 
+if [ -d /usr/share/fzf ] ; then
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+fi
+
 # Prompt
 #autoload -U promptinit
 #promptinit
@@ -29,6 +34,10 @@ export PS1='%F{green}%~%f %# '
 
 #source ~/.zsh/git-prompt/zshrc.sh
 source ~/.zsh/z/z.sh
+
+if hash fzf 2> /dev/null ; then
+  source ~/.zsh/z/z-fzf.zsh
+fi
 
 #export GOROOT=/usr/local/go
 
