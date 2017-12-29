@@ -23,6 +23,9 @@ bindkey '^R' history-incremental-pattern-search-backward
 if [ -d /usr/share/fzf ] ; then
   source /usr/share/fzf/key-bindings.zsh
   source /usr/share/fzf/completion.zsh
+elif [ -d /usr/local/opt/fzf ]; then
+  source /usr/local/opt/fzf/shell/key-bindings.zsh
+  source /usr/local/opt/fzf/shell/completion.zsh
 fi
 
 # Prompt
