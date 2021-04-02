@@ -2,8 +2,6 @@
 	name = Daniël de Kok
 	email = me@danieldk.eu
 	signingkey = F7A91C9AC064F18E055C20DA8C4AF066744DB6EA
-[core]
-  editor = vim
 [gui]
 [color]
 	ui = auto
@@ -18,10 +16,3 @@
   gg = grep --break --heading -n
 [push]
 	default = simple
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[commit]
-	gpgsign = true
