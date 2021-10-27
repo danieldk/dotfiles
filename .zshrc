@@ -6,11 +6,7 @@ setopt HIST_SAVE_NO_DUPS
 setopt inc_append_history
 
 # Editor
-export EDITOR=emacs
-
-# Completion
-autoload -U compinit
-compinit
+#export EDITOR=emacs
 
 # vi-style input
 bindkey -v
@@ -18,9 +14,19 @@ export KEYTIMEOUT=1
 
 bindkey '^R' history-incremental-pattern-search-backward
 
+if command -v brew &> /dev/null ; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 if [ -d /usr/share/fzf/shell ] ; then
   source /usr/share/fzf/shell/key-bindings.zsh
+elif [ -d /opt/homebrew/opt/fzf/shell ]; then
+  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 fi
+
+# Completion
+autoload -U compinit
+compinit
 
 # Prompt
 #autoload -U promptinit
