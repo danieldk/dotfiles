@@ -45,3 +45,7 @@ fi
 if which pyenv > /dev/null ; then
   eval "$(pyenv init -)"
 fi
+
+if [ -d /opt/homebrew/opt/ccache/libexec ]; then
+  export PATH=/opt/homebrew/opt/ccache/libexec:$PATH
+fi
