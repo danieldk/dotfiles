@@ -41,3 +41,7 @@ source ~/.zsh/z/z.sh
 if hash fzf 2> /dev/null ; then
   source ~/.zsh/z/z-fzf.zsh
 fi
+
+if which pyenv > /dev/null ; then
+  eval "$(pyenv init -)"
+fi
