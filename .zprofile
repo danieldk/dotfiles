@@ -9,3 +9,7 @@ if [ -d ~/.pyenv ]; then
   export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init --path)"
 fi
+
+if command -v direnv &> /dev/null ; then
+  eval "$(direnv hook zsh)"
+fi
