@@ -11,3 +11,5 @@
   gg = grep --break --heading -n
 [push]
 	default = simple
+[init]
+	defaultBranch = main
