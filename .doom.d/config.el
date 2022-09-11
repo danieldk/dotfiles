@@ -60,3 +60,5 @@
 
 (add-to-list 'default-frame-alist '(height . 50))
 (add-to-list 'default-frame-alist '(width . 100))
+
+(setq display-line-numbers-type 'relative)
