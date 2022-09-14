@@ -1,3 +1,16 @@
+* Right space toggles Fn
+[rspc]>[fntog]
+fn [rspc]>[fntog]
+
+* Spacemacs-inspired keyboard shortcuts.
+fn {n}>{x1}{fntog}{-lwin}{n}{+lwin}
+fn {t}>{x1}{fntog}{-lwin}{t}{+lwin}
+fn {w}>{x1}{fntog}{-lwin}{w}{+lwin}
+fn {c}>{x1}{fntog}{-lwin}{c}{+lwin}
+fn {v}>{x1}{fntog}{-lwin}{v}{+lwin}
+fn {f}>{x1}{fntog}{-lwin}{lspc}{+lwin}
+fn {d}>{x1}{fntog}{-hyper}{q}{+hyper}
+
 * Swap Cmd and Opt keys to order on Apple keyboards.
 [lwin]>[lalt]
 [lalt]>[lwin]
