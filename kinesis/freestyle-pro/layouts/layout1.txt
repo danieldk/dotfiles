@@ -16,7 +16,7 @@ fn {v}>{x1}{fntog}{-lwin}{v}{+lwin}
 
 * Application launch/switching
 fn {f}>{x1}{fntog}{-lwin}{lspc}{+lwin}
-fn {d}>{x1}{fntog}{-hyper}{q}{+hyper}
+fn {d}>{x1}{fntog}{-hyper}{w}{+hyper}
 
 * Swap Cmd and Opt keys to order on Apple keyboards.
 [lwin]>[lalt]
