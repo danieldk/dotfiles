@@ -18,6 +18,12 @@ fn {v}>{x1}{fntog}{-lwin}{v}{+lwin}
 fn {f}>{x1}{fntog}{-lwin}{lspc}{+lwin}
 fn {d}>{x1}{fntog}{-hyper}{w}{+hyper}
 
+* Common programming punctuation
+fn {j}>{x1}{fntog}{-shift}{9}{+shift}
+fn {k}>{x1}{fntog}{-shift}{0}{+shift}
+fn {u}>{x1}{fntog}{-shift}{OBRK}{+shift}
+fn {i}>{x1}{fntog}{-shift}{CBRK}{+shift}
+
 * Swap Cmd and Opt keys to order on Apple keyboards.
 [lwin]>[lalt]
 [lalt]>[lwin]
