@@ -1,20 +1,28 @@
+* macOS layout
+
 * Right space toggles Fn
 [rspc]>[fntog]
 fn [rspc]>[fntog]
 
 * Spacemacs-inspired keyboard shortcuts.
 
-* Window management
+** Window management
 fn {n}>{x1}{fntog}{-lwin}{n}{+lwin}
 fn {t}>{x1}{fntog}{-lwin}{t}{+lwin}
 fn {w}>{x1}{fntog}{-lwin}{w}{+lwin}
 
-* Cut/copy/paste
+** Selections
+fn {a}>{x1}{fntog}{-lwin}{a}{+lwin}
 fn {x}>{x1}{fntog}{-lwin}{x}{+lwin}
 fn {c}>{x1}{fntog}{-lwin}{c}{+lwin}
 fn {v}>{x1}{fntog}{-lwin}{v}{+lwin}
 
-* Application launch/switching
+** Application shortcuts
+* fn {f}>{x1}{fntog}{-lwin}{f}{+lwin}
+fn {s}>{x1}{fntog}{-lwin}{s}{+lwin}
+fn {z}>{x1}{fntog}{-lwin}{z}{+lwin}
+
+** Application launch/switching
 fn {f}>{x1}{fntog}{-lwin}{lspc}{+lwin}
 fn {d}>{x1}{fntog}{-hyper}{w}{+hyper}
 
@@ -46,4 +54,3 @@ fn [rctrl]>[ralt]
 {hk6}>{s1}{del}
 {hk7}>{s5}{x1}{-lwin}{c}{+lwin}
 {hk8}>{s5}{x1}{-lwin}{v}{+lwin}
-{hk10}>{s5}{x1}{rmous}
