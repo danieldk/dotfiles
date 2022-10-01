@@ -32,6 +32,9 @@ fn {k}>{x1}{fntog}{-shift}{0}{+shift}
 fn {u}>{x1}{fntog}{-shift}{OBRK}{+shift}
 fn {i}>{x1}{fntog}{-shift}{CBRK}{+shift}
 
+* Hard to reach keys
+fn {g}>{x1}{bspc}
+
 * Swap Cmd and Opt keys to order on Apple keyboards.
 [lwin]>[lalt]
 [lalt]>[lwin]
