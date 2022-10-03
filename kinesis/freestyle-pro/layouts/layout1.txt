@@ -1,8 +1,8 @@
 * macOS layout
 
-* Right space toggles Fn
-[rspc]>[fntog]
-fn [rspc]>[fntog]
+* Left space toggles Fn
+[lspc]>[fntog]
+fn [lspc]>[fntog]
 
 * Spacemacs-inspired keyboard shortcuts.
 
