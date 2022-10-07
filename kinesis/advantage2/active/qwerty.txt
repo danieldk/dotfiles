@@ -1,0 +1,18 @@
+* Put escape in reach
+[caps]>[escape]
+
+* Put layer toggle within reach, who uses the delete key anyway?
+[delete]>[kptoggle]
+
+* Printscreen makes a screenshot
+{prtscr}>{-lwin}{-lshift}{4}{+lshift}{+lwin}
+
+* Mac remappings
+[kp=]>[kp=mac]
+[lctrl]>[lwin]
+[rctrl]>[rwin]
+[rwin]>[rctrl]
+[kp-lctrl]>[kp-lwin]
+[kp-rctrl]>[kp-rwin]
+[kp-rwin]>[kp-rctrl]
+[scroll]>[shutdn]
