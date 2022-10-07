@@ -10,6 +10,7 @@ fn [lspc]>[fntog]
 fn {n}>{x1}{fntog}{-lwin}{n}{+lwin}
 fn {t}>{x1}{fntog}{-lwin}{t}{+lwin}
 fn {w}>{x1}{fntog}{-lwin}{w}{+lwin}
+fn {q}>{x1}{fntog}{-lwin}{q}{+lwin}
 
 ** Selections
 fn {a}>{x1}{fntog}{-lwin}{a}{+lwin}
