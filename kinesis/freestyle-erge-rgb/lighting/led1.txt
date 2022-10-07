@@ -1,0 +1,2 @@
+[wave]>[spd5][dirright]
+fn [wave]>[spd5][dirdown]

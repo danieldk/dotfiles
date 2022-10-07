@@ -1,0 +1,2 @@
+[spectrum]>[spd5]
+fn [mono]>[255][255][255]
