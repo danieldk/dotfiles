@@ -3,6 +3,7 @@
 
 * Put layer toggle within reach, who uses the delete key anyway?
 [delete]>[kptoggle]
+[kp-delete]>[kptoggle]
 
 * Printscreen makes a screenshot
 {prtscr}>{-lwin}{-lshift}{4}{+lshift}{+lwin}
