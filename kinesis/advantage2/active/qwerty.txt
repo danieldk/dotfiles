@@ -17,3 +17,9 @@
 [kp-rctrl]>[kp-rwin]
 [kp-rwin]>[kp-rctrl]
 [scroll]>[shutdn]
+
+* Easier to access punctuation in the numpad layer
+{kp-d}>{speed5}{-lshift}{9}{+lshift}
+{kp-f}>{speed5}{-lshift}{0}{+lshift}
+{kp-c}>{speed5}{-lshift}{obrack}{+lshift}
+{kp-v}>{speed5}{-lshift}{cbrack}{+lshift}
