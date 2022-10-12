@@ -9,6 +9,8 @@
 * Easier to use control keys
 [right]>[lctrl]
 [up]>[lctrl]
+[kp-right]>[lctrl]
+[kp-up]>[lctrl]
 
 * Keypad layer switches
 [intl-\]>[kpshft]
