@@ -3,30 +3,34 @@
 
 * I don't use delete, so move away tab from the pinky. Also move
 * shift away from pinkies by using hold of tab/enter.
-[delete]>[tab][t&h200][lshift]
-[enter]>[enter][t&h200][lshift]
+* [delete]>[tab][t&h200][lshift]
+* [enter]>[enter][t&h200][lshift]
+
+* Put layer toggle within reach, who uses the delete key anyway?
+[delete]>[kptoggle]
+[kp-delete]>[kptoggle]
 
 * Easier to use control keys
-[right]>[lctrl]
-[up]>[lctrl]
-[kp-right]>[lctrl]
-[kp-up]>[lctrl]
+* [right]>[lctrl]
+* [up]>[lctrl]
+* [kp-right]>[lctrl]
+* [kp-up]>[lctrl]
 
 * Keypad layer switches
-[intl-\]>[kpshft]
-[obrack]>[kpshft]
-[kp-insert]>[kpshft]
-[kp.]>[kpshft]
+* [intl-\]>[kpshft]
+* [obrack]>[kpshft]
+* [kp-insert]>[kpshft]
+* [kp.]>[kpshft]
 
 * Hyper keys
-[left]>[hyper]
-[down]>[hyper]
+* [left]>[hyper]
+* [down]>[hyper]
 
 * vim-like movement
-[kp-h]>[left]
-[kp4]>[down]
-[kp5]>[up]
-[kp6]>[right]
+* [kp-h]>[left]
+* [kp4]>[down]
+* [kp5]>[up]
+* [kp6]>[right]
 
 * punctuation:
 [kp-a]>[=]
@@ -36,22 +40,19 @@
 {kp-g}>{speed9}{-lshift}{\}{+lshift}
 
 # []
-{kp-e}>{speed5}{obrack}
-{kp-r}>{speed5}{cbrack}
+{kp1}>{speed5}{obrack}
+{kp2}>{speed5}{cbrack}
+
+# ()
+{kp4}>{speed5}{-lshift}{9}{+lshift}
+{kp5}>{speed5}{-lshift}{0}{+lshift}
 
 # {}
 {kp7}>{speed5}{-lshift}{obrack}{+lshift}
 {kp8}>{speed5}{-lshift}{cbrack}{+lshift}
 
-# ()
-{kp-c}>{speed5}{-lshift}{9}{+lshift}
-{kp-v}>{speed5}{-lshift}{0}{+lshift}
-
-
-
-
 * Printscreen makes a screenshot
-{prtscr}>{-lwin}{-lshift}{4}{+lshift}{+lwin}
+{prtscr}>{x1}{-lwin}{-lshift}{4}{+lshift}{+lwin}
 
 * Mac remappings
 [kp=]>[kp=mac]
@@ -62,3 +63,4 @@
 [kp-rctrl]>[kp-rwin]
 [kp-rwin]>[kp-rctrl]
 [scroll]>[shutdn]
+
