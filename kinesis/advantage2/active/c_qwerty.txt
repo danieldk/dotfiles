@@ -27,10 +27,10 @@
 * [down]>[hyper]
 
 * vim-like movement
-* [kp-h]>[left]
-* [kp4]>[down]
-* [kp5]>[up]
-* [kp6]>[right]
+[kp-h]>[left]
+[kp4]>[down]
+[kp5]>[up]
+[kp6]>[right]
 
 * punctuation:
 [kp-a]>[=]
@@ -44,8 +44,8 @@
 {kp2}>{speed5}{cbrack}
 
 # ()
-{kp4}>{speed5}{-lshift}{9}{+lshift}
-{kp5}>{speed5}{-lshift}{0}{+lshift}
+{kp-e}>{speed5}{-lshift}{9}{+lshift}
+{kp-r}>{speed5}{-lshift}{0}{+lshift}
 
 # {}
 {kp7}>{speed5}{-lshift}{obrack}{+lshift}
@@ -64,8 +64,11 @@
 [kp-rwin]>[kp-rctrl]
 [scroll]>[shutdn]
 
-* Tarmak 1
-[e]>[j]
+* Tarmak 2
+[e]>[f]
 [j]>[n]
 [k]>[e]
 [n]>[k]
+[t]>[g]
+[f]>[t]
+[g]>[j]
