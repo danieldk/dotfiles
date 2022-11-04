@@ -64,11 +64,14 @@
 [kp-rwin]>[kp-rctrl]
 [scroll]>[shutdn]
 
-* Tarmak 2
+* Tarmak 3
 [e]>[f]
 [j]>[n]
 [k]>[e]
 [n]>[k]
 [t]>[g]
 [f]>[t]
-[g]>[j]
+[g]>[d]
+[d]>[s]
+[s]>[r]
+[r]>[j]
