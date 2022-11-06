@@ -49,3 +49,7 @@ fi
 if [ -d /opt/homebrew/opt/ccache/libexec ]; then
   export PATH=/opt/homebrew/opt/ccache/libexec:$PATH
 fi
+
+if command -v starship &> /dev/null ; then
+  eval "$(starship init zsh)"
+fi
