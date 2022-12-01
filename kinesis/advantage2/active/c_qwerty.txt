@@ -1,5 +1,6 @@
 * Put escape in reach
 [caps]>[escape]
+[intl-\]>[caps]
 
 * I don't use delete, so move away tab from the pinky. Also move
 * shift away from pinkies by using hold of tab/enter.
