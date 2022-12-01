@@ -1,2 +1,0 @@
-[rebound]>[255][0][255][spd5][dirleft]
-fn [rebound]>[255][0][255][spd5][dirup]
