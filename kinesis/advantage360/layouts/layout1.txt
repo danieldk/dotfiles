@@ -30,6 +30,8 @@
 [rwin]>[rctr]
 [rctr]>[rwin]
 
+[del]>[fn1t]
+
 <keypad>
 
 * Mac layout
@@ -38,6 +40,19 @@
 [rctr]>[rwin]
 
 <function1>
+
+* The second layer is used for vim-like navigation.
+
+[h]>[left]
+[j]>[down]
+[k]>[up]
+[l]>[right]
+[i]>[pgup]
+[comm]>[pgdn]
+[m]>[home]
+[perd]>[end]
+
+[del]>[deft]
 
 * Mac layout
 [lctr]>[lwin]
