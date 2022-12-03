@@ -22,6 +22,9 @@
 [n]>[k]
 [m]>[h]
 
+* macOS emoji picker
+{hk2}>{s9}{x1}{-lctr}{-lwin}{spc}{+lctr}{+lwin}
+
 * Mac layout
 [lctr]>[lwin]
 [rwin]>[rctr]
