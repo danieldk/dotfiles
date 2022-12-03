@@ -1,9 +1,56 @@
 <base>
 
+* Colemak-DH
+[e]>[f]
+[r]>[p]
+[t]>[b]
+[y]>[j]
+[u]>[l]
+[i]>[u]
+[o]>[y]
+[p]>[scol]
+[s]>[r]
+[d]>[s]
+[f]>[t]
+[h]>[m]
+[j]>[n]
+[k]>[e]
+[l]>[i]
+[scol]>[o]
+[v]>[d]
+[b]>[v]
+[n]>[k]
+[m]>[h]
+
+* Mac layout
+[lctr]>[lwin]
+[rwin]>[rctr]
+[rctr]>[rwin]
+
 <keypad>
+
+* Mac layout
+[lctr]>[lwin]
+[rwin]>[rctr]
+[rctr]>[rwin]
 
 <function1>
 
+* Mac layout
+[lctr]>[lwin]
+[rwin]>[rctr]
+[rctr]>[rwin]
+
 <function2>
 
+* Mac layout
+[lctr]>[lwin]
+[rwin]>[rctr]
+[rctr]>[rwin]
+
 <function3>
+
+* Mac layout
+[lctr]>[lwin]
+[rwin]>[rctr]
+[rctr]>[rwin]
