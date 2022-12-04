@@ -43,7 +43,14 @@
 
 <function1>
 
-* The second layer is used for vim-like navigation.
+* Left half: Dutch/German ortho.
+{f}>{s9}{x1}{-lalt}{u}{+lalt}{e}
+{d}>{s9}{x1}{-lalt}{e}{+lalt}{e}
+{s}>{s9}{x1}{-lalt}{grav}{+lalt}{e}
+{a}>{s9}{x1}{-lalt}{e}{+lalt}{o}
+{v}>{s9}{x1}{-lalt}{u}{+lalt}{o}
+
+* Right half: vim-like navigation
 
 [h]>[left]
 [j]>[down]
@@ -53,6 +60,8 @@
 [comm]>[pgdn]
 [m]>[home]
 [perd]>[end]
+
+* Switch back to base layer.
 
 [del]>[deft]
 
