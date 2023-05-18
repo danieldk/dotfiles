@@ -29,6 +29,10 @@
 ;; `load-theme' function. This is the default:
 ;
 (setq doom-theme 'doom-one)
+(custom-set-faces!
+  '(font-lock-variable-name-face :slant italic)
+  '(font-lock-function-name-face :slant italic)
+  )
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
