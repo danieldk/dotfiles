@@ -30,8 +30,7 @@
 ;
 (setq doom-theme 'doom-one)
 (custom-set-faces!
-  '(font-lock-variable-name-face :slant italic)
-  '(font-lock-function-name-face :slant italic)
+  '(font-lock-keyword-face :slant italic)
   )
 
 ;; If you use `org' and don't want your org files in the default location below,
