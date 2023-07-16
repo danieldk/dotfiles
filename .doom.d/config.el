@@ -65,3 +65,6 @@
 (add-to-list 'default-frame-alist '(width . 100))
 
 (setq display-line-numbers-type 'relative)
+
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy))
