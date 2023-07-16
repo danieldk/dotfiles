@@ -13,3 +13,7 @@ fi
 if command -v direnv &> /dev/null ; then
   eval "$(direnv hook zsh)"
 fi
+
+if grep -q AuthenticAMD /proc/cpuinfo 2> /dev/null ; then
+  export MKL_DEBUG_CPU_TYPE=5
+fi
