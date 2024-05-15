@@ -61,13 +61,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 pyenvdir() {
-  if [ $# -ne 1 ]; then
-    echo "$0 dir"
+  if (($# == 1)); then
+    VERSION=3.12
+  elif (($# == 2)); then
+    VERSION=$2
+  else
+    echo "$0 dir [version]"
     return
   fi
 
   mkdir "$1"
   cd "$1"
-  pyenv virtualenv 3.12 "$1"
+  pyenv virtualenv $VERSION "$1"
   pyenv local "$1"
 }
