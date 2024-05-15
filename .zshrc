@@ -20,6 +20,8 @@ fi
 
 if [ -d /usr/share/fzf/shell ] ; then
   source /usr/share/fzf/shell/key-bindings.zsh
+elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
 elif [ -d /opt/homebrew/opt/fzf/shell ]; then
   source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 fi
