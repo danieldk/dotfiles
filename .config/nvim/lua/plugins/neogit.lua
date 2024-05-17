@@ -8,5 +8,8 @@ return {
     },
     config = true,
     keys = { { "<leader>gs", "<cmd>Neogit<CR>", mode = "n", desc = "Open Neogit" } },
+    opts = {
+      kind = "auto",
+    },
   },
 }
