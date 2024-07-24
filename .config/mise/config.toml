@@ -1,0 +1,12 @@
+[settings]
+experimental = true
+
+[tools]
+"cargo:zellij" = "latest"
+usage = "latest"
+"cargo:ripgrep" = "latest"
+"cargo:fd-find" = "latest"
+neovim = "latest"
+
+[plugins]
+neovim = "git@github.com:danieldk/mise-plugins.git#asdf-neovim"
