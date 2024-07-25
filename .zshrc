@@ -6,7 +6,9 @@ setopt HIST_SAVE_NO_DUPS
 setopt inc_append_history
 
 # Editor
-#export EDITOR=emacs
+export EDITOR=nvim
+alias vi=nvim
+alias nv=nvim
 
 # vi-style input
 bindkey -v
