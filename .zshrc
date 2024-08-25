@@ -77,3 +77,5 @@ pyenvdir() {
   pyenv virtualenv $VERSION "$1"
   pyenv local "$1"
 }
+
+eval "$(/opt/homebrew/bin/mise activate zsh)"
